@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae34528f5c8f141feb294936743e1241, type: 3}
+  m_Name: testingClamp
+  m_EditorClassIdentifier: 
+  totalRadius: 1
+  displacementLimit: 0.01
+  depthFactor: 0.15
+  minMaxStepResolution: {x: 180, y: 200}
+  radialSteps: 90
+  weightDistributionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2
+      value: 0
+      inSlope: 0
+      outSlope: 13.760273
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1045531
+    - serializedVersion: 3
+      time: 0.30219117
+      value: -0.005355835
+      inSlope: -0.008052274
+      outSlope: -0.008052274
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.5837656
+    - serializedVersion: 3
+      time: 0.4172376
+      value: 0.61824536
+      inSlope: 38.450783
+      outSlope: 38.450783
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.052133106
+    - serializedVersion: 3
+      time: 0.54884505
+      value: 0.7934998
+      inSlope: -0.0073709693
+      outSlope: -0.0073709693
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.67385256
+      value: 1
+      inSlope: -0.012386478
+      outSlope: -0.012386478
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.57218677
+    - serializedVersion: 3
+      time: 0.94808507
+      value: 0.6862494
+      inSlope: 15.437801
+      outSlope: 15.437801
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.058112904
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.024536574
+      outSlope: -0.024536574
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16020238
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  debug: 1
+  minMaxCylinderRadius: {x: 0.0043, y: 0.0056}
+  cylinderResolution: 5
+  maxResolution: 64
+  signPassCount: 1
+  center: {x: 0, y: 0, z: 0}
+  sizeBox: {x: 0, y: 0, z: 0}
+  threshold: 0.5
