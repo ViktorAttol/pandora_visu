@@ -5,9 +5,13 @@ using Net;
 
 public interface IDataManager: IReadReceiver, IPhenotypeReceiver
 {
-    ReadData? GetRead();
+    ReadData GetRead();
 
-    List<PhenotypeData> GetPhenotype();
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>Empty list if there are no phenotype data currently. If there is data returns list with data.</returns>
+    List<PhenotypeData> GetPhenotypes();
 
     void ClearLists();
 }

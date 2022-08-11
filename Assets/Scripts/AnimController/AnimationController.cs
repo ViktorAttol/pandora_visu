@@ -6,6 +6,8 @@ namespace AnimController
 {
     public class AnimationController: MonoBehaviour, IAnimationController
     {
+        public GameObject prefabTest;
+        
         private IDataManager dataManager;
         private Action cbAnimationFinished;
         public GameObject animationConnector;
@@ -18,6 +20,8 @@ namespace AnimController
         [SerializeField] public List<GameObject> animations = new List<GameObject>();
         private int currentAnimationIndex;
 
+        
+        
         private void Update()
         {
             ReadInput();
@@ -63,8 +67,18 @@ namespace AnimController
         
         public void RunIdleAnimation()
         {
-            RunAnimation(idleAnimationPrefab);
-            currentAnimationIndex = -1;
+            IAnimationConnector connector = prefabTest.GetComponent<IAnimationConnector>();
+            connector.SetDataManager(dataManager);
+            connector.SubscribeForAnimationFinished(CurrentAnimationFinished);
+            connector.StartAnimation();
+            
+            //RunAnimation(idleAnimationPrefab);
+            //urrentAnimationIndex = -1;
+        }
+
+        private void CurrentAnimationFinished()
+        {
+            
         }
 
         public void StartAnimations()
@@ -98,12 +112,12 @@ namespace AnimController
                 RunAnimation(animations[currentAnimationIndex]);
             }
         }
-        
+
         private void OnAnimationsFinished()
         {
             cbAnimationFinished?.Invoke();
         }
-        
+
         public void SubscribeForAnimationsFinished(Action cbAnimationFinishedFunc)
         {
             cbAnimationFinished += cbAnimationFinishedFunc;

@@ -15,13 +15,13 @@ using Net;
             phenotypeDatas = new List<PhenotypeData>();
         }
         
-        public ReadData? GetRead()
+        public ReadData GetRead()
         {
-            if (reads.Count <= 0) return new ReadData?();
+            if (reads.Count <= 0) return new ReadData();
             return reads.First();
         }
 
-        public List<PhenotypeData> GetPhenotype()
+        public List<PhenotypeData> GetPhenotypes()
         {
             if (phenotypeDatas.Count <= 0) return null;
             return phenotypeDatas;
