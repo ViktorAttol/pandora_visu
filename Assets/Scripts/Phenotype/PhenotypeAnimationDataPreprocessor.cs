@@ -16,6 +16,7 @@ public enum PreprocessState
 public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
 {
     public PhenotypeSDFBaker sdfBaker;
+    public ColorLoader colorLoader;
     
     
     public IrisSettings _irisSet;
@@ -35,18 +36,21 @@ public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
     private Action<PhenoDisplayData> phenotypePreprocessedInformationCB;
 
     private List<PhenoDisplayData> displayDataList = new List<PhenoDisplayData>();
-
+    private List<PhenotypeData> inputPhenoTypeData = new List<PhenotypeData>();
     private PhenoDisplayData currentProcessData;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        StateLoop();
+        if (inputPhenoTypeData.Count == 0) // todo change to subscription 
+        {
+            inputPhenoTypeData.AddRange(dataManager.GetPhenotypes());
+        }
+        else StateLoop();
     }
 
     public void StateLoop()
@@ -85,7 +89,9 @@ public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
         if (displayDataList.Count == phenoDisplayDataPosition)
         {
             currentProcessData = new PhenoDisplayData();
-            currentProcessData.phenotype = (Phenotype) phenoDisplayDataPosition;
+            currentProcessData.phenotype = inputPhenoTypeData[phenoDisplayDataPosition].phenotype;
+            currentProcessData.color = inputPhenoTypeData[phenoDisplayDataPosition].color;
+
             state = PreprocessState.CreateClass;
         }
         else
@@ -126,6 +132,7 @@ public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
     
     public void OnCaseGenerateColor()
     {
+        GenerateColor(currentProcessData);
         state = PreprocessState.PhenotypeDataComplete;
     }
     
@@ -133,7 +140,7 @@ public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
     {
         displayDataList.Add(currentProcessData);
         OnPhenotypePreprocessed(currentProcessData);
-        if (phenoDisplayDataPosition + 1 >= Enum.GetNames(typeof(Phenotype)).Length) state = PreprocessState.AllPhenotypeDataPrepared;
+        if (phenoDisplayDataPosition + 1 >= inputPhenoTypeData.Count) state = PreprocessState.AllPhenotypeDataPrepared;
         else state = PreprocessState.ChoosePhenotype;
         phenoDataGenerated = false;
         phenoMeshGenerated = false;
@@ -184,16 +191,13 @@ public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
         StartCoroutine(phenotype.CreateMesh());
     }
 
-    /*
-    private Texture3D CreateSDF()
+    private void GenerateColor(PhenoDisplayData displayData)
     {
-        return null;
+        print("returned color: " + displayData.phenotype);
+        print("returned color: " + displayData.color);
+        currentProcessData.colorTexture = colorLoader.GetTextureForColor(displayData.phenotype, displayData.color);
     }
-    */
-    private List<Color> CreatePhenoColors()
-    {
-        return null;
-    }
+    
 
     private void PhenoDataGenerated()
     {
@@ -228,11 +232,13 @@ public struct PhenoDisplayData
     public static float phenoAnimationDuration = 10.0f;
     //public Texture3D sdf;
     public RenderTexture sdf;
-    public List<Color> phenoColor;
+    public string color;
+    public Texture2D colorTexture;
+    
 
     public bool IsCalculated()
     {
-        if (phenoClassData == null || sdf == null || phenoColor == null) return false;
+        if (phenoClassData == null || sdf == null || colorTexture == null) return false;
         return true;
     }
 }

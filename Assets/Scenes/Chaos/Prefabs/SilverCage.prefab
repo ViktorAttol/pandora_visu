@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8912960132303434700
+--- !u!1 &8798289962694974651
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7240896160744627255}
-  - component: {fileID: 5692401172408534772}
-  - component: {fileID: 7653337691041675905}
-  - component: {fileID: 119994621768245918}
+  - component: {fileID: 8165622848050808321}
+  - component: {fileID: 5115461505037289892}
+  - component: {fileID: 6996678931910638958}
   m_Layer: 0
-  m_Name: HautballAnimation
+  m_Name: SilverCage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7240896160744627255
+--- !u!4 &8165622848050808321
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8912960132303434700}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_GameObject: {fileID: 8798289962694974651}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5692401172408534772
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
+--- !u!33 &5115461505037289892
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8912960132303434700}
-  m_Mesh: {fileID: 0}
---- !u!23 &7653337691041675905
+  m_GameObject: {fileID: 8798289962694974651}
+  m_Mesh: {fileID: 3601203621170536553, guid: 173d039f135524137a3bc2e5b9b4139b, type: 3}
+--- !u!23 &6996678931910638958
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8912960132303434700}
+  m_GameObject: {fileID: 8798289962694974651}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6133ab4955de51846a937f0629d56332, type: 2}
+  - {fileID: 2100000, guid: fef012c22176e416db11007b016ff7bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,24 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &119994621768245918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8912960132303434700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd5b4ac19aadac24ba794e0e42fbc66c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  perlinScale: 3
-  waveSpeed: 2
-  waveHeight: 0.3
-  offset: 0
-  meshrender: {fileID: 0}
-  rendT: {fileID: 0}
-  meshOptimization: 2
-  resolution: 17
-  gizmos: 1

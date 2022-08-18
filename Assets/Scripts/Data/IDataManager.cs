@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Net;
+using UnityEngine;
 
 public interface IDataManager: IReadReceiver, IPhenotypeReceiver
 {

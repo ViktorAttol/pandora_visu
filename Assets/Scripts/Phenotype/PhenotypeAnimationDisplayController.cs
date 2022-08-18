@@ -63,6 +63,7 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
     {
         //preprocessedPhenotypes[0].sdf = sdfBaker.GetSDF(preprocessedPhenotypes[0].phenoClassData.GetMesh());
         vfx.SetTexture("sdf", sdfBaker.GetSDF(preprocessedPhenotypes[0].phenoClassData.GetMesh()));
+        vfx.SetTexture("color_input", preprocessedPhenotypes[0].colorTexture);
         vfx.SetMesh("inputMesh", preprocessedPhenotypes[0].phenoClassData.GetMesh());
     }
 

@@ -3,6 +3,6 @@
 public struct PhenotypeData
 {
     public Phenotype phenotype;
-    public Color color;
+    public string color;
     public float probability;
 }

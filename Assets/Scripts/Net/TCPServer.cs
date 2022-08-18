@@ -141,8 +141,8 @@ namespace Net
                 var pheno = (Phenotype)Int32.Parse(sr.ReadLine());
                 //Debug.Log("Phenotype received: " + pheno);
                 phenotypeData.phenotype = pheno;
-                Color color = GetColor(sr.ReadLine());
-                phenotypeData.color = color;
+                //Color color = GetColor(sr.ReadLine());
+                phenotypeData.color = sr.ReadLine();
                 phenotypeData.probability = float.Parse(sr.ReadLine());
                 datas.Add(phenotypeData);
             }
