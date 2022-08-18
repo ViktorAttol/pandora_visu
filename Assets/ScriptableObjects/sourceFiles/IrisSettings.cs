@@ -4,14 +4,14 @@ using UnityEngine;
 
 using GD.MinMaxSlider;
 
-[CreateAssetMenuAttribute(fileName = "IrisSettings", menuName = "Pandora Customs/IrisData", order = 1)]
-
+[CreateAssetMenuAttribute(fileName = "IrisSettings", menuName = "Pandora Customs/IrisSettings", order = 1)]
 public class IrisSettings : ScriptableObject
 {
     [Header("Generation Settings")]
+    public float generationRate = 0.01f;
     public float totalRadius;
-    [Range(0f,0.01f)] public float displacementLimit;
-    [Range(0f,0.2f)] public float depthFactor;
+    [Range(0f,0.04f)] public float displacementLimit;
+    [Range(0f,0.4f)] public float depthFactor;
     [MinMaxSlider(0f,800f)] public Vector2Int minMaxStepResolution;
     public int radialSteps;
     public AnimationCurve weightDistributionCurve;

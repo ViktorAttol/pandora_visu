@@ -1384,6 +1384,12 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 3826154802561255329, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
         type: 3}
+      propertyPath: prefabTest
+      value: 
+      objectReference: {fileID: 482247182754041925, guid: ce7768562b5ef1f46aa8a3dd252bec9a,
+        type: 3}
+    - target: {fileID: 3826154802561255329, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
+        type: 3}
       propertyPath: animationConnector
       value: 
       objectReference: {fileID: 9048377937179906610, guid: b75a58c1a4db74641bfe5195c2339f88,
