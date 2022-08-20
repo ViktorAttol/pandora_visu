@@ -69,7 +69,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  debug: 1
+  debug: 0
   minMaxCylinderRadius: {x: 0.003, y: 0.004}
   cylinderResolution: 3
   maxResolution: 64

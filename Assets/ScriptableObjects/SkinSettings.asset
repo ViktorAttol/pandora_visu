@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519b2d65d5c4c485c9e27fba1228740f, type: 3}
   m_Name: SkinSettings
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   generationRate: 0.01
   distributionRadius: {x: 0.4, y: 0.5}
   blobRadius: {x: 0.15, y: 0.25}
