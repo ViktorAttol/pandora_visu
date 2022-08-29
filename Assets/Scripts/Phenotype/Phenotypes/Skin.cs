@@ -177,4 +177,9 @@ public class Skin : IPhenotype
 
         return dist;
     }
+
+    public List<Vector3> DebugDraw ()
+    {
+        return null;
+    }
 }

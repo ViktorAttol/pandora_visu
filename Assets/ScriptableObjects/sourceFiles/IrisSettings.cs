@@ -9,22 +9,17 @@ public class IrisSettings : ScriptableObject
 {
     [Header("Generation Settings")]
     public float generationRate = 0.01f;
-    public float totalRadius;
-    [Range(0f,0.04f)] public float displacementLimit;
-    [Range(0f,0.4f)] public float depthFactor;
-    [MinMaxSlider(0f,800f)] public Vector2Int minMaxStepResolution;
-    public int radialSteps;
+    public float totalRadius = 1f;
+    [Range(0f,0.04f)] public float displacementLimit = 0.01f;
+    [Range(0f,0.4f)] public float depthFactor = 0.2f;
+    [MinMaxSlider(10f,200f)] public Vector2Int minMaxStepResolution = new Vector2Int (120, 140);
+    public int radialSteps = 130;
     public AnimationCurve weightDistributionCurve;
-    public bool debug;
+    public bool debug = false;
     
     [Space(10)]
 
     [Header("Mesh Settings")]
-    [MinMaxSlider(0.0001f,0.1f)] public Vector2 minMaxCylinderRadius;
+    [MinMaxSlider(0.0001f,0.01f)] public Vector2 minMaxCylinderRadius = new Vector2 (0.003f, 0.004f);
     [Range(3,16)] public int cylinderResolution;
-
-    // SDF Settings (not visible, only default stuff)
-    [HideInInspector] public int maxResolution = 64, signPassCount = 1;
-    [HideInInspector] public Vector3 center, sizeBox;
-    [HideInInspector] public float threshold = 0.5f;
 }

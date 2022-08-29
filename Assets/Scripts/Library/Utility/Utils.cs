@@ -126,6 +126,26 @@ namespace PandoraUtils
             return vec;
         }
 
+        public static List<Vector3> RandomCircleCoordinates (System.Random rand, float radius, int amount, Quaternion rotation)
+        {
+            var results = new List<Vector3>();
+
+            for (int i = 0; i < amount; i++)
+            {
+                float angle = RangeFromRead(rand, 0f,360f);
+                Vector3 vec = new Vector3
+                (
+                    Mathf.Cos(angle * Mathf.Deg2Rad) * radius,
+                    Mathf.Sin(angle * Mathf.Deg2Rad) * radius,
+                    0
+                );
+                vec = rotation * vec;
+                results.Add(vec);
+            }
+
+            return results;
+        }
+
         public static List<Vector3> ReturnCircle(Vector3 position, Quaternion rotation, float radius, int resolution)
         {
             List<Vector3> circle = new List<Vector3>();
@@ -189,15 +209,6 @@ namespace PandoraUtils
             return available[RangeFromRead(rand, 0, available.Count)];
         }
 
-        /*
-        public static int WeightedRandomInRange(float weight, Vector2Int range)
-        {
-            int result = Random.Range((int)(range.x * weight), (int)((range.y + 1) * weight));
-            // + 1 since when using Random.Range as int the upper range changes into an exclusive
-            return result;
-        }
-        */
-
         public static int WeightedRandomInRange(System.Random rand, float weight, Vector2Int range)
         {
             int result = RangeFromRead(rand, (int)(range.x * weight), (int)((range.y + 1) * weight));
@@ -205,16 +216,9 @@ namespace PandoraUtils
             return result;
         }
 
-        /*
-        public static float WeightedRandomInRange(float weight, Vector2 range)
-        {
-            float result = Random.Range((range.x * weight), (range.y * weight));
-            return result;
-        }
-        */
-
         public static float WeightedRandomInRange(System.Random rand, float weight, Vector2 range)
         {
+            Mathf.Clamp(weight, 0f, 1f);
             float result = RangeFromRead(rand, (range.x * weight), (range.y * weight));
             return result;
         }

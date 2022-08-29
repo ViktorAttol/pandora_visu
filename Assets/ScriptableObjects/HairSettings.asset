@@ -12,4 +12,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d346f6ae4c64006b5e0ed3200f11c0, type: 3}
   m_Name: HairSettings
   m_EditorClassIdentifier: 
-  debug: 1
+  generationRate: 0.01
+  morphCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.9798015
+      outSlope: 1.9798015
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.04391892
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.8570691
+      outSlope: -1.8570691
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06925678
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  distributionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  lengthRadius: 2
+  minMaxHeightRadius: {x: 0.5, y: 0.7}
+  resolution: 140
+  minMaxHairAmount: {x: 10, y: 15}
+  minMaxHairLength: {x: 40, y: 60}
+  minMaxDisplacement: {x: 0, y: 0.005}
+  minMaxTwirlRadius: {x: 0, y: 0.05}
+  minMaxTwirlFrequency: {x: 10, y: 30}
+  cleanThresh: 3
+  debug: 0
+  minMaxCylinderRadius: {x: 0.001, y: 0.005}
+  cylinderResolution: 5

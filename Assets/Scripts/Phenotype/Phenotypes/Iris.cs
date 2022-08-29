@@ -174,12 +174,15 @@ public class Iris : IPhenotype
         return output; // Bei Objekten wird nur eine Referenz übergeben!
     }
 
-    public void DebugDraw()
+    
+    public List<Vector3> DebugDraw()
     {
         foreach (var path in allPaths)
         {
             path.DebugDraw();
         }
+
+        return null;
     }
 
     public bool IsRunning()
