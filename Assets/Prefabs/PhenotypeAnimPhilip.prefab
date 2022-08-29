@@ -136,7 +136,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3108000716915238772}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: eac601cef47425d44af66eb4c5280719, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 2e5aeed63662145ea9e263a9ed99e3cb, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -154,7 +154,10 @@ VisualEffect:
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 8, y: 8, z: 8}
+        m_Name: boxSize
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -313,9 +316,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sdfBaker: {fileID: 2629955337923112129}
   colorLoader: {fileID: 2405415904870477399}
-  _irisSet: {fileID: 11400000, guid: 9a0fbd93286bf454bb7ac247291d9a96, type: 2}
-  _skinSet: {fileID: 11400000, guid: 8013eaeea87a047a4a51e7b4857ae218, type: 2}
-  _hairSet: {fileID: 11400000, guid: 31a83e995c97545a0b1903fafefdeba1, type: 2}
+  _irisSet: {fileID: 11400000, guid: 4eb18e9ae55524a4dafdb4b7c7217faf, type: 2}
+  _skinSet: {fileID: 11400000, guid: d57b5c375872945c391d227ffee395ce, type: 2}
+  _hairSet: {fileID: 11400000, guid: 980a79a6d4f234072a3d720bcf02d255, type: 2}
 --- !u!1 &9033494755363675337
 GameObject:
   m_ObjectHideFlags: 0

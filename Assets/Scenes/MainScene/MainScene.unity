@@ -986,79 +986,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2546383837090643418, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3108000716915238772, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5170840889067651766, guid: 9c35048fd625d45a8bd18fd816172d0c,
         type: 3}
       propertyPath: m_Name
       value: PhenotypeAnimPhilip
       objectReference: {fileID: 0}
-    - target: {fileID: 5170840889067651766, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363898339234432755, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: m_Asset
-      value: 
-      objectReference: {fileID: 8926484042661614526, guid: 2e5aeed63662145ea9e263a9ed99e3cb,
-        type: 3}
-    - target: {fileID: 7363898339234432755, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363898339234432755, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Name
-      value: boxSize
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363898339234432755, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363898339234432755, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.y
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363898339234432755, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.z
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363898339234432755, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Overridden
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406389197450503155, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: _hairSet
-      value: 
-      objectReference: {fileID: 11400000, guid: 980a79a6d4f234072a3d720bcf02d255,
-        type: 2}
-    - target: {fileID: 7406389197450503155, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: _irisSet
-      value: 
-      objectReference: {fileID: 11400000, guid: 4eb18e9ae55524a4dafdb4b7c7217faf,
-        type: 2}
-    - target: {fileID: 7406389197450503155, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
-      propertyPath: _skinSet
-      value: 
-      objectReference: {fileID: 11400000, guid: d57b5c375872945c391d227ffee395ce,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c35048fd625d45a8bd18fd816172d0c, type: 3}
