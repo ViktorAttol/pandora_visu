@@ -4,8 +4,15 @@ using UnityEngine;
 
 namespace AnimController
 {
+    
+    
+    
     public class AnimationController: MonoBehaviour, IAnimationController
     {
+        private enum AnimationType
+        {
+            Chaos, Pheno, None
+        }
         public GameObject prefabTest;
         
         private IDataManager dataManager;
@@ -20,9 +27,18 @@ namespace AnimController
         [SerializeField] public List<GameObject> animations = new List<GameObject>();
         private int currentAnimationIndex;
 
+        public GameObject chaosAnimationPrefab;
+        public GameObject phenoAnimationPrefab;
+
+        private AnimationType currentlyRunninganimationType = AnimationType.None;
+        private IAnimationConnector currentlyRunningAnimation = null;
         
-        
-        private void Update()
+        private void Start()
+        {
+            dataManager = new DataManager();
+        }
+
+        void Update()
         {
             ReadInput();
         }
@@ -55,13 +71,49 @@ namespace AnimController
             currentAnimationConnector = nextAnimationConnector;
         }
 
-        
+        private void SwitchAnimation()
+        {
+            if (currentlyRunningAnimation == null || currentlyRunninganimationType == AnimationType.Pheno)
+            {
+                DestroyAndStartAnimation(AnimationType.Chaos);
+            }
+
+            else if (currentlyRunninganimationType == AnimationType.Chaos)
+            {
+                DestroyAndStartAnimation(AnimationType.Pheno);
+            }
+        }
+
+        private void DestroyAndStartAnimation(AnimationType typeToStart)
+        {
+            if(currentlyRunningAnimation != null) currentlyRunningAnimation.EndAnimation();
+            
+            GameObject newAnimation = null;
+            if (typeToStart == AnimationType.Chaos)
+            {
+                newAnimation = Instantiate(chaosAnimationPrefab, transform);
+                currentlyRunninganimationType = AnimationType.Chaos;
+            }
+            
+            if (typeToStart == AnimationType.Pheno)
+            {
+                newAnimation = Instantiate(phenoAnimationPrefab, transform);
+                currentlyRunninganimationType = AnimationType.Pheno;
+            }
+            
+            IAnimationConnector animationConnector = newAnimation.GetComponent<IAnimationConnector>();
+            currentlyRunningAnimation = animationConnector;
+            currentlyRunningAnimation.SetDataManager(dataManager);
+            currentlyRunningAnimation.StartAnimation();
+        }
 
         private void ReadInput()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SwitchAnimations();
+                SwitchAnimation();
+
+                //SwitchAnimations();
             }
         }
         

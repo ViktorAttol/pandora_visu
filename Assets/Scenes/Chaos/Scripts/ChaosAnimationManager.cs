@@ -1,22 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System;
-
-public class PhenotypeAnimationManager : MonoBehaviour, IAnimationConnector
+public class ChaosAnimationManager : MonoBehaviour, IAnimationConnector
 {
-    public PhenotypeAnimationDataPreprocessor dataPreprocessor;
-
     private IDataManager dataManager;
     // Start is called before the first frame update
-    /*
-     void Start()     
-    {
-        dataManager = new DataManager();
-        dataPreprocessor.SetDataManager(dataManager);
-    }
-    */
+    public SequenceAnimationManager sequenceAnimationManager;
+    
+     void Start()
+     {
+         //7sequenceAnimationManager = GetComponentInChildren<SequenceAnimationManager>();
+         //if(sequenceAnimationManager == null)Debug.Log("no chaos sequence animation manager found!!!");
+     }
+    
 
     // Update is called once per frame
     void Update()
@@ -27,7 +25,7 @@ public class PhenotypeAnimationManager : MonoBehaviour, IAnimationConnector
     public void SetDataManager(IDataManager dataManager)
     {
         this.dataManager = dataManager;
-        dataPreprocessor.SetDataManager(dataManager);
+        sequenceAnimationManager.SetDataManager(dataManager);
     }
 
     public void StartAnimation()
@@ -46,5 +44,4 @@ public class PhenotypeAnimationManager : MonoBehaviour, IAnimationConnector
     public void UnSubscribeForAnimationFinished(Action finished)
     {
     }
-
 }

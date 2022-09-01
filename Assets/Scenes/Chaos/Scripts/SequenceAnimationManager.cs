@@ -14,6 +14,8 @@ public class SequenceAnimationManager : MonoBehaviour, IAnimationController
     private LinkedList<string> qualities = new LinkedList<string>();
     private LinkedList<int[]> signals = new LinkedList<int[]>();
 
+    private IDataManager dataManager;
+    
     private int signalInd = -1;
 
     // Start is called before the first frame update
@@ -25,6 +27,10 @@ public class SequenceAnimationManager : MonoBehaviour, IAnimationController
     // Update is called once per frame
     void Update()
     {
+        ReadData read = dataManager.GetRead();
+        reads.AddLast(read.data);
+        qualities.AddLast(read.quality);
+        signals.AddLast(read.signals);
         if (reads.First != null)
         {
             int nextNuc = getNextNucleotide(reads.First.Value);
@@ -44,14 +50,17 @@ public class SequenceAnimationManager : MonoBehaviour, IAnimationController
             int nextSignal = getNextSignal();
             seqController.getNextSignal(nextSignal);
         }
-            
-
     }
-    
+
     /// <summary>
     /// for feeding data
     /// </summary>
     /// <param name="data"></param>
+
+    public void SetDataManager(IDataManager dataManager)
+    {
+        this.dataManager = dataManager;
+    }
     
     public void recieveSequenceData(string data)
     {

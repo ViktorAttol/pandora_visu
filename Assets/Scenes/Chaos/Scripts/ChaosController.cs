@@ -34,7 +34,7 @@ public class ChaosController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cageBounds = cage.GetComponent<Renderer>().bounds;
+        //cageBounds = cage.GetComponent<Renderer>().bounds;
     }
 
     // Update is called once per frame
