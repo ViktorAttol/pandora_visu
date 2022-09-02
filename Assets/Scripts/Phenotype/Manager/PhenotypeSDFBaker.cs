@@ -26,10 +26,12 @@ public class PhenotypeSDFBaker: MonoBehaviour
     Mesh sdf_input;
     MeshToSDFBaker meshBaker;
 
+    /*
     [Space(10)]
     [Header("Editor Settings")]
     [Range(0f,2f)] public float scale = 2f;
     [SerializeField] bool useSDF;
+    */
 
     void Start()
     {

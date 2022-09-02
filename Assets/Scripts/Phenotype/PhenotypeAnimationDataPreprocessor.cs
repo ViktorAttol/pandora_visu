@@ -164,7 +164,7 @@ public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
         IPhenotype phenoClass = null;
         switch (phenotype)
         {
-            case Phenotype.Eye:
+            case Phenotype.Iris:
                 phenoClass = new Iris(_irisSet, pseudoRandomNumberGenerator);
                 break;
             case Phenotype.Skin:
@@ -193,7 +193,7 @@ public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
 
     private void GenerateColor(PhenoDisplayData displayData)
     {
-        print("returned color: " + displayData.phenotype);
+        print("returned phenotype: " + displayData.phenotype);
         print("returned color: " + displayData.color);
         currentProcessData.colorTexture = colorLoader.GetTextureForColor(displayData.phenotype, displayData.color);
     }

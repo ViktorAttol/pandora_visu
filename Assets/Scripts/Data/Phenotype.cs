@@ -1,5 +1,5 @@
 ﻿
     public enum Phenotype
     {
-        Eye, Skin, Hair
+        Iris, Skin, Hair
     }

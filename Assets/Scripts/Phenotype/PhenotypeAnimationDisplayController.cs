@@ -61,6 +61,9 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
 
     private void StartPhenotypeAnimation()
     {
+        // CAUTION: PHILIP EDITS
+        vfx.SetVector3("boxSize", sdfBaker.sizeBox); // Read from PhenotypeSDFBaker Settings
+
         //preprocessedPhenotypes[0].sdf = sdfBaker.GetSDF(preprocessedPhenotypes[0].phenoClassData.GetMesh());
         vfx.SetTexture("sdf", sdfBaker.GetSDF(preprocessedPhenotypes[0].phenoClassData.GetMesh()));
         vfx.SetTexture("color_input", preprocessedPhenotypes[0].colorTexture);

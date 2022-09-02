@@ -239,8 +239,6 @@ MonoBehaviour:
   sizeBox: {x: 8, y: 8, z: 8}
   signPassCount: 0
   threshold: 0.5
-  scale: 2
-  useSDF: 0
 --- !u!1 &8566871181286859107
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,9 +299,9 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 8, y: 8, z: 8}
+      - m_Value: {x: 0, y: 0, z: 0}
         m_Name: boxSize
-        m_Overridden: 1
+        m_Overridden: 0
     m_Vector4f:
       m_Array: []
     m_Uint:

@@ -9,7 +9,7 @@ using Net;
         private List<ReadData> reads;
         private List<PhenotypeData> phenotypeDatas;
 
-        private List<PhenotypeData> eyeColors = new List<PhenotypeData>(){new PhenotypeData(Phenotype.Eye, "brown", 1f), new PhenotypeData(Phenotype.Eye, "blue", 1f), new PhenotypeData(Phenotype.Eye, "green", 1f)};
+        private List<PhenotypeData> eyeColors = new List<PhenotypeData>(){new PhenotypeData(Phenotype.Iris, "brown", 1f), new PhenotypeData(Phenotype.Iris, "blue", 1f), new PhenotypeData(Phenotype.Iris, "green", 1f)};
         private List<PhenotypeData> skinColors = new List<PhenotypeData>(){new PhenotypeData(Phenotype.Skin, "white", 1f), new PhenotypeData(Phenotype.Skin, "brown", 1f), new PhenotypeData(Phenotype.Skin, "yellow", 1f)};
         private List<PhenotypeData> hairColors = new List<PhenotypeData>(){new PhenotypeData(Phenotype.Hair, "brown", 1f), new PhenotypeData(Phenotype.Hair, "blond", 1f), new PhenotypeData(Phenotype.Hair, "black", 1f), new PhenotypeData(Phenotype.Hair, "red", 1f)};
 
