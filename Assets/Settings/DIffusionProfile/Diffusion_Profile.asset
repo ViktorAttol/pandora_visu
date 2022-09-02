@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2686e09ec7aef44bad2843e4416f057, type: 3}
-  m_Name: Diffusion Profile
+  m_Name: Diffusion_Profile
   m_EditorClassIdentifier: 
   profile:
     scatteringDistance: {r: 0, g: 0, b: 0, a: 1}
@@ -20,5 +20,5 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.527
-    hash: 1080953950
+    hash: 1076925841
   m_Version: 1
