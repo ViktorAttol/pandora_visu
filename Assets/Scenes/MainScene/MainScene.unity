@@ -820,19 +820,29 @@ PrefabInstance:
         type: 3}
       propertyPath: prefabTest
       value: 
-      objectReference: {fileID: 5170840889067651766, guid: 9c35048fd625d45a8bd18fd816172d0c,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3826154802561255329, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
         type: 3}
       propertyPath: animationConnector
       value: 
-      objectReference: {fileID: 9048377937179906610, guid: b75a58c1a4db74641bfe5195c2339f88,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3826154802561255329, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
         type: 3}
       propertyPath: idleAnimationPrefab
       value: 
       objectReference: {fileID: 7726183754060598487, guid: 0c35113d3e69b01428e7ebdfd1ff1438,
+        type: 3}
+    - target: {fileID: 3826154802561255329, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
+        type: 3}
+      propertyPath: chaosAnimationPrefab
+      value: 
+      objectReference: {fileID: 4597689863024187558, guid: 76254f2619050d346a10c4dff0d4a20d,
+        type: 3}
+    - target: {fileID: 3826154802561255329, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
+        type: 3}
+      propertyPath: phenoAnimationPrefab
+      value: 
+      objectReference: {fileID: 1873763218480383137, guid: 8839eaee99d299f4aa16ef47d21e5c4f,
         type: 3}
     - target: {fileID: 3826154802561255329, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
         type: 3}
@@ -865,7 +875,7 @@ PrefabInstance:
     - target: {fileID: 4163191499163861430, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5805811765196865139, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
         type: 3}
@@ -986,10 +996,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2546383837090643418, guid: 9c35048fd625d45a8bd18fd816172d0c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5170840889067651766, guid: 9c35048fd625d45a8bd18fd816172d0c,
         type: 3}
       propertyPath: m_Name
       value: PhenotypeAnimPhilip
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170840889067651766, guid: 9c35048fd625d45a8bd18fd816172d0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c35048fd625d45a8bd18fd816172d0c, type: 3}
