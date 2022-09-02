@@ -9,33 +9,33 @@ using Net;
         private List<ReadData> reads;
         private List<PhenotypeData> phenotypeDatas;
 
+        private List<PhenotypeData> eyeColors = new List<PhenotypeData>(){new PhenotypeData(Phenotype.Eye, "brown", 1f), new PhenotypeData(Phenotype.Eye, "blue", 1f), new PhenotypeData(Phenotype.Eye, "green", 1f)};
+        private List<PhenotypeData> skinColors = new List<PhenotypeData>(){new PhenotypeData(Phenotype.Skin, "white", 1f), new PhenotypeData(Phenotype.Skin, "brown", 1f), new PhenotypeData(Phenotype.Skin, "yellow", 1f)};
+        private List<PhenotypeData> hairColors = new List<PhenotypeData>(){new PhenotypeData(Phenotype.Hair, "brown", 1f), new PhenotypeData(Phenotype.Hair, "blond", 1f), new PhenotypeData(Phenotype.Hair, "black", 1f), new PhenotypeData(Phenotype.Hair, "red", 1f)};
+
         public DataManager()
         {
             reads = new List<ReadData>();
             phenotypeDatas = new List<PhenotypeData>();
-            SetDummyPhenoData();
+        }
+        
+
+        private List<PhenotypeData> GetRandomPhenotypes()
+        {
+            Random rnd = new Random();
+            PhenotypeData data1 = eyeColors[rnd.Next(0, eyeColors.Count)];
+            PhenotypeData data2 = skinColors[rnd.Next(0, skinColors.Count)];
+            PhenotypeData data3 = hairColors[rnd.Next(0, hairColors.Count)];
+            List<PhenotypeData> dataList = new List<PhenotypeData>();
+            dataList.Add(data1);
+            dataList.Add(data2);
+            dataList.Add(data3);
+            return dataList;
         }
 
-        private void SetDummyPhenoData()
+        public void LoadDataFromCSV()
         {
-            PhenotypeData data1 = new PhenotypeData();
-            data1.phenotype = Phenotype.Eye;
-            data1.color = "brown";
-            data1.probability = 1f;
             
-            PhenotypeData data2 = new PhenotypeData();
-            data2.phenotype = Phenotype.Skin;
-            data2.color = "white";
-            data2.probability = 1f;
-            
-            PhenotypeData data3 = new PhenotypeData();
-            data3.phenotype = Phenotype.Hair;
-            data3.color = "brown";
-            data3.probability = 1f;
-            
-            phenotypeDatas.Add(data1);
-            phenotypeDatas.Add(data2);
-            phenotypeDatas.Add(data3);
         }
         
         public ReadData GetRead()
@@ -221,8 +221,7 @@ using Net;
 
         public List<PhenotypeData> GetPhenotypes()
         {
-            if (phenotypeDatas.Count <= 0) return null;
-            return phenotypeDatas;
+            return GetRandomPhenotypes();
         }
 
         public void ClearLists()

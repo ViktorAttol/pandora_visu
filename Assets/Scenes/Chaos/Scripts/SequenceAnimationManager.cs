@@ -6,7 +6,7 @@ using System.Text;
 using AnimController;
 using System;
 
-public class SequenceAnimationManager : MonoBehaviour, IAnimationController
+public class SequenceAnimationManager : MonoBehaviour
 {
     public ChaosController seqController;
 
