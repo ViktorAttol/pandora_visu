@@ -17,6 +17,11 @@ namespace AnimController
             throw new NotImplementedException();
         }
 
+        public void FadeOutAnimation()
+        {
+            throw new NotImplementedException();
+        }
+
         public void EndAnimation()
         {
             throw new NotImplementedException();

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4163191499163861430
+--- !u!1 &8036242955815443900
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5805811765196865139}
-  - component: {fileID: 3826154802561255329}
+  - component: {fileID: 8036242955171356809}
+  - component: {fileID: 8036242955171356810}
   m_Layer: 0
   m_Name: AnimationController
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5805811765196865139
+--- !u!4 &8036242955171356809
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4163191499163861430}
+  m_GameObject: {fileID: 8036242955815443900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,18 +32,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3826154802561255329
+--- !u!114 &8036242955171356810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4163191499163861430}
+  m_GameObject: {fileID: 8036242955815443900}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d854935257d44d69a2813746b31ba598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationConnector: {fileID: 0}
-  idleAnimationPrefab: {fileID: 0}
-  animations: []
+  prefabTest: {fileID: 5170840889067651766, guid: 9c35048fd625d45a8bd18fd816172d0c,
+    type: 3}
+  animationConnector: {fileID: 9048377937179906610, guid: b75a58c1a4db74641bfe5195c2339f88,
+    type: 3}
+  idleAnimationPrefab: {fileID: 7726183754060598487, guid: 0c35113d3e69b01428e7ebdfd1ff1438,
+    type: 3}
+  animations:
+  - {fileID: 4008601127795195762, guid: 71e0fb752346efe4a85378b083051083, type: 3}
+  - {fileID: 8912960132303434700, guid: 0728fa417ff5c684c93ceee985c82b78, type: 3}
+  - {fileID: 7183713107896163508, guid: 8328b32ef0509e04aa6154c5571d2c07, type: 3}
+  chaosAnimationPrefab: {fileID: 4597689863024187558, guid: 76254f2619050d346a10c4dff0d4a20d,
+    type: 3}
+  phenoAnimationPrefab: {fileID: 1873763218480383137, guid: 8839eaee99d299f4aa16ef47d21e5c4f,
+    type: 3}

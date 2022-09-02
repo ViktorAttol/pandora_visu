@@ -34,6 +34,11 @@ public class PhenotypeAnimationManager : MonoBehaviour, IAnimationConnector
     {
     }
 
+    public void FadeOutAnimation()
+    {
+        throw new NotImplementedException();
+    }
+
     public void EndAnimation()
     {
         Destroy(gameObject);

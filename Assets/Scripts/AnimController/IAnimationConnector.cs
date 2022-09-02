@@ -9,6 +9,8 @@ public interface IAnimationConnector
 
     void StartAnimation();
 
+    void FadeOutAnimation();
+    
     void EndAnimation();
 
     void SubscribeForAnimationFinished(Action finished);
