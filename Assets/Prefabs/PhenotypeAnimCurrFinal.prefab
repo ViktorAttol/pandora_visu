@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sdfBaker: {fileID: 8772184890332064470}
   dataPreprocessor: {fileID: 4254408956242683364}
+  vfxSet: {fileID: 11400000, guid: 21c72da0dd46f4e01bb189ddb2c1f548, type: 2}
   vfx: {fileID: 4319980474587824356}
 --- !u!1 &3089796554708282685
 GameObject:
@@ -292,9 +293,9 @@ VisualEffect:
       - m_Value: 0.012
         m_Name: spawn_rate_mult
         m_Overridden: 1
-      - m_Value: 1.8
+      - m_Value: 0
         m_Name: post_scale
-        m_Overridden: 1
+        m_Overridden: 0
       - m_Value: 0.001
         m_Name: randomStartVelocity_0.001
         m_Overridden: 1
@@ -304,9 +305,12 @@ VisualEffect:
       - m_Value: 1.8
         m_Name: post_scale_1.8
         m_Overridden: 1
-      - m_Value: 2
+      - m_Value: 2.45
         m_Name: particleSize_2.0
         m_Overridden: 1
+      - m_Value: 0
+        m_Name: fadeFactor
+        m_Overridden: 0
     m_Vector2f:
       m_Array: []
     m_Vector3f:

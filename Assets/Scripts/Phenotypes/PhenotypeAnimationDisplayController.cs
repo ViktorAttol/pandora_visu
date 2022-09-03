@@ -8,11 +8,11 @@ using UnityEngine.VFX;
 public class PhenotypeAnimationDisplayController : MonoBehaviour
 {
     public PhenotypeSDFBaker sdfBaker;
+    public PhenotypeAnimationDataPreprocessor dataPreprocessor;
+    public VFXSettings vfxSet;
     
     private List<PhenoDisplayData> preprocessedPhenotypes = new List<PhenoDisplayData>(); 
     private List<PhenoDisplayData> displayedPhenotypes = new List<PhenoDisplayData>();
-
-    public PhenotypeAnimationDataPreprocessor dataPreprocessor;
 
     private float remainingPlayTime = -1f;
 
@@ -61,14 +61,30 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
 
     private void StartPhenotypeAnimation()
     {
-        // CAUTION: PHILIP EDITS
-        vfx.SetVector3("boxSize", sdfBaker.sizeBox); // Read from PhenotypeSDFBaker Settings
+        InitializeVFX(); // -> Apply settings and set up box size from sdf baker
 
         //preprocessedPhenotypes[0].sdf = sdfBaker.GetSDF(preprocessedPhenotypes[0].phenoClassData.GetMesh());
         vfx.SetTexture("sdf", sdfBaker.GetSDF(preprocessedPhenotypes[0].phenoClassData.GetMesh()));
         vfx.SetTexture("color_input", preprocessedPhenotypes[0].colorTexture);
         vfx.SetMesh("inputMesh", preprocessedPhenotypes[0].phenoClassData.GetMesh());
     }
+
+    // CAUTION: PHILIP EDITS
+    private void InitializeVFX()
+    {
+        vfx.SetVector3("boxSize", sdfBaker.sizeBox); // Read from PhenotypeSDFBaker Settings
+
+        // Apply Settings from SO
+        vfx.SetFloat("post_scale", vfxSet.postScale);
+        vfx.SetFloat("randomStartVelocity", vfxSet.randomStartVelocity);
+        vfx.SetFloat("attractionSpeedForce", vfxSet.attractionSpeedForce);
+        vfx.SetFloat("blobSize", vfxSet.blobSize);
+        vfx.SetFloat("knobSize", vfxSet.knobSize);
+        vfx.SetFloat("trisSize", vfxSet.trisSize);
+        vfx.SetInt("trisRate", vfxSet.trisRate);
+        vfx.SetInt("blobsKnobsRate", vfxSet.blobsKnobsRate);
+    }
+
 
     private void EndPhenotypeAnimation()
     {
