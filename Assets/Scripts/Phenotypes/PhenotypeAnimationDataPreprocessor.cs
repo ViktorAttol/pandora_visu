@@ -199,8 +199,8 @@ public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
 
     private void GenerateColor(PhenoDisplayData displayData)
     {
-        print("returned phenotype: " + displayData.phenotype);
-        print("returned color: " + displayData.color);
+        //print("returned phenotype: " + displayData.phenotype);
+        //print("returned color: " + displayData.color);
         currentProcessData.colorTexture = colorLoader.GetTextureForColor(displayData.phenotype, displayData.color);
     }
     

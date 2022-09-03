@@ -10,7 +10,6 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
     public PhenotypeSDFBaker sdfBaker;
     public PhenotypeAnimationDataPreprocessor dataPreprocessor;
     public VFXSettings vfxSet;
-
     private float  lastAlpha;
     
     private List<PhenoDisplayData> preprocessedPhenotypes = new List<PhenoDisplayData>();
@@ -43,6 +42,9 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
                 PhenoDisplayData currPheno = preprocessedPhenotypes[0];
                 displayedPhenotypes.Add(currPheno);
                 preprocessedPhenotypes.Remove(currPheno);
+
+                // FADE OUT
+                if (preprocessedPhenotypes.Count < 1) StartCoroutine(FadeAlpha(vfxSet.fadeOutDuration, lastAlpha, 0));
             }
         }
         else
@@ -65,13 +67,14 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
 
     private void StartPhenotypeAnimation()
     {
+        print("phenotype animation started.");
         //preprocessedPhenotypes[0].sdf = sdfBaker.GetSDF(preprocessedPhenotypes[0].phenoClassData.GetMesh());
         vfx.SetTexture("sdf", sdfBaker.GetSDF(preprocessedPhenotypes[0].phenoClassData.GetMesh()));
         vfx.SetTexture("color_input", preprocessedPhenotypes[0].colorTexture);
         vfx.SetMesh("inputMesh", preprocessedPhenotypes[0].phenoClassData.GetMesh());
 
         InitializeVFX(); // -> Apply settings and set up box size from sdf baker
-        StartCoroutine(FadeAlpha(vfxSet.fadeDuration, lastAlpha, preprocessedPhenotypes[0].phenoAlphaValue)); // -> Start Fade into next Phenotype
+        StartCoroutine(FadeAlpha(vfxSet.crossFadeDuration, lastAlpha, preprocessedPhenotypes[0].phenoAlphaValue)); // -> Start Fade into next Phenotype
         lastAlpha = preprocessedPhenotypes[0].phenoAlphaValue;
     }
 
@@ -93,7 +96,7 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
 
     private void EndPhenotypeAnimation()
     {
-        StartCoroutine(FadeAlpha(vfxSet.fadeDuration, lastAlpha, 0));
+        print("phenotype animation ended."); 
     }
 
     private void StartVfx()
