@@ -15,6 +15,7 @@ public class VFXSettings : ScriptableObject
     [Range(0f,0.01f)] public float trisSize = 0.005f;
     [Range(1000,150000)] public int trisRate = 100000;
     [Range(1000,150000)] public int blobsKnobsRate = 100000;
-
+    [Range(60,600)] public int fadeDuration = 240;
+    [Range(5f,300f)] public float displayDuration;
 
 }

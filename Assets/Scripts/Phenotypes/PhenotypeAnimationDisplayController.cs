@@ -10,8 +10,10 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
     public PhenotypeSDFBaker sdfBaker;
     public PhenotypeAnimationDataPreprocessor dataPreprocessor;
     public VFXSettings vfxSet;
+
+    private float  lastAlpha;
     
-    private List<PhenoDisplayData> preprocessedPhenotypes = new List<PhenoDisplayData>(); 
+    private List<PhenoDisplayData> preprocessedPhenotypes = new List<PhenoDisplayData>();
     private List<PhenoDisplayData> displayedPhenotypes = new List<PhenoDisplayData>();
 
     private float remainingPlayTime = -1f;
@@ -24,6 +26,7 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
     void Start()
     {
         dataPreprocessor.SubscribeForPhenotypeDataPreprocessed(OnPhenotypePreprocessed);
+        lastAlpha = 0;
         StartVfx();
     }
 
@@ -47,7 +50,8 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
             if (preprocessedPhenotypes.Count > 0)
             {
                 isRunning = true;
-                remainingPlayTime = PhenoDisplayData.phenoAnimationDuration;
+                //remainingPlayTime = PhenoDisplayData.phenoAnimationDuration;
+                remainingPlayTime = vfxSet.displayDuration;
                 StartPhenotypeAnimation();
             }
         }
@@ -61,15 +65,16 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
 
     private void StartPhenotypeAnimation()
     {
-        InitializeVFX(); // -> Apply settings and set up box size from sdf baker
-
         //preprocessedPhenotypes[0].sdf = sdfBaker.GetSDF(preprocessedPhenotypes[0].phenoClassData.GetMesh());
         vfx.SetTexture("sdf", sdfBaker.GetSDF(preprocessedPhenotypes[0].phenoClassData.GetMesh()));
         vfx.SetTexture("color_input", preprocessedPhenotypes[0].colorTexture);
         vfx.SetMesh("inputMesh", preprocessedPhenotypes[0].phenoClassData.GetMesh());
+
+        InitializeVFX(); // -> Apply settings and set up box size from sdf baker
+        StartCoroutine(FadeAlpha(vfxSet.fadeDuration, lastAlpha, preprocessedPhenotypes[0].phenoAlphaValue)); // -> Start Fade into next Phenotype
+        lastAlpha = preprocessedPhenotypes[0].phenoAlphaValue;
     }
 
-    // CAUTION: PHILIP EDITS
     private void InitializeVFX()
     {
         vfx.SetVector3("boxSize", sdfBaker.sizeBox); // Read from PhenotypeSDFBaker Settings
@@ -88,7 +93,7 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
 
     private void EndPhenotypeAnimation()
     {
-        // not in use
+        StartCoroutine(FadeAlpha(vfxSet.fadeDuration, lastAlpha, 0));
     }
 
     private void StartVfx()
@@ -104,5 +109,27 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
     private void EndVfx()
     {
         vfx.enabled = false;
+    }
+
+    // Fade Stuff
+    IEnumerator FadeAlpha (int fDuration, float start, float end)
+    {
+        print("fade started.");
+        bool active = true;
+        int fCount = 0;
+        {
+            while (active)
+            {
+                float t = (float) fCount / fDuration;
+                float v = Mathf.Lerp(start, end, t);
+                vfx.SetFloat("fadeFactor", v);
+                fCount++;
+
+                if (fCount > fDuration) active = false;
+
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        print("fade finished.");
     }
 }

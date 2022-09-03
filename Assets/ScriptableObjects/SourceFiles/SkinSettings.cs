@@ -15,4 +15,9 @@ public class SkinSettings : ScriptableObject
     [Range(0.1f,1f)] public float displacementIntensity = 0.4f;
     public int blobResolution = 20, blobAmount = 3;
     public bool debug = false;
+
+    [Space(10)]
+
+    [Header("Display Settings")]
+    [Range(0f,1f)] public float visibility;
 }

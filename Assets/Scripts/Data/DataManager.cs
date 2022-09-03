@@ -20,7 +20,7 @@ using Net;
             };
         private List<PhenotypeData> skinColors = new List<PhenotypeData>(){
             new PhenotypeData(Phenotype.Skin, "black", 1f),
-            new PhenotypeData(Phenotype.Skin, "darkbrown", 1f),
+            new PhenotypeData(Phenotype.Skin, "brown", 1f),
             new PhenotypeData(Phenotype.Skin, "olive", 1f),
             new PhenotypeData(Phenotype.Skin, "mediumwhite", 1f),
             new PhenotypeData(Phenotype.Skin, "white", 1f),

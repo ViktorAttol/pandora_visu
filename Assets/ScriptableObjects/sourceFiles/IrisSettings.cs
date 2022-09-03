@@ -22,4 +22,9 @@ public class IrisSettings : ScriptableObject
     [Header("Mesh Settings")]
     [MinMaxSlider(0.0001f,0.01f)] public Vector2 minMaxCylinderRadius = new Vector2 (0.003f, 0.004f);
     [Range(3,16)] public int cylinderResolution;
+
+    [Space(10)]
+
+    [Header("Display Settings")]
+    [Range(0f,1f)] public float visibility;
 }

@@ -28,5 +28,10 @@ public class HairSettings : ScriptableObject
     [MinMaxSlider(0.0001f,0.05f)] public Vector2 minMaxCylinderRadius = new Vector2(0.001f, 0.005f);
     [Range(3,10)] public int cylinderResolution = 5;
 
+    [Space(10)]
+
+    [Header("Display Settings")]
+    [Range(0f,1f)] public float visibility;
+
     
 }

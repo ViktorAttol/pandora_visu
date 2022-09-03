@@ -41,6 +41,7 @@ public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -161,19 +162,24 @@ public class PhenotypeAnimationDataPreprocessor : MonoBehaviour
 
     private IPhenotype CreatePhenoClass(Phenotype phenotype)
     {
+        // added visibility
+
         IPhenotype phenoClass = null;
         switch (phenotype)
         {
             case Phenotype.Iris:
                 phenoClass = new Iris(_irisSet, pseudoRandomNumberGenerator);
+                currentProcessData.phenoAlphaValue = _irisSet.visibility;
                 break;
             case Phenotype.Skin:
 
                 phenoClass = new Skin(_skinSet, pseudoRandomNumberGenerator);
+                currentProcessData.phenoAlphaValue = _skinSet.visibility;
                 break;
             case Phenotype.Hair:
 
                 phenoClass = new Hair(_hairSet, pseudoRandomNumberGenerator);
+                currentProcessData.phenoAlphaValue = _hairSet.visibility;
                 break;
         }
         return phenoClass;
@@ -229,7 +235,8 @@ public struct PhenoDisplayData
 {
     public Phenotype phenotype;
     public IPhenotype phenoClassData;
-    public static float phenoAnimationDuration = 10.0f;
+    public float phenoAlphaValue;
+    public static float phenoAnimationDuration = 10f;
     //public Texture3D sdf;
     public RenderTexture sdf;
     public string color;

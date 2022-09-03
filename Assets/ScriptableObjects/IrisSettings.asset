@@ -72,8 +72,4 @@ MonoBehaviour:
   debug: 0
   minMaxCylinderRadius: {x: 0.003, y: 0.004}
   cylinderResolution: 3
-  maxResolution: 64
-  signPassCount: 1
-  center: {x: 0, y: 0, z: 0}
-  sizeBox: {x: 0, y: 0, z: 0}
-  threshold: 0.5
+  visibility: 1
