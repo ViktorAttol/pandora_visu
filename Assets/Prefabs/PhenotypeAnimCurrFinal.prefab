@@ -308,9 +308,9 @@ VisualEffect:
       - m_Value: 2.45
         m_Name: particleSize_2.0
         m_Overridden: 1
-      - m_Value: 0
+      - m_Value: 0.14
         m_Name: fadeFactor
-        m_Overridden: 0
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:

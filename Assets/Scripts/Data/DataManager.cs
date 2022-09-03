@@ -9,9 +9,31 @@ using Net;
         private List<ReadData> reads;
         private List<PhenotypeData> phenotypeDatas;
 
-        private List<PhenotypeData> eyeColors = new List<PhenotypeData>(){new PhenotypeData(Phenotype.Iris, "blue", 1f)}; //, new PhenotypeData(Phenotype.Iris, "blue", 1f), new PhenotypeData(Phenotype.Iris, "green", 1f)};
-        private List<PhenotypeData> skinColors = new List<PhenotypeData>(){new PhenotypeData(Phenotype.Skin, "brown", 1f)}; //, new PhenotypeData(Phenotype.Skin, "brown", 1f), new PhenotypeData(Phenotype.Skin, "yellow", 1f)};
-        private List<PhenotypeData> hairColors = new List<PhenotypeData>(){new PhenotypeData(Phenotype.Hair, "black", 1f)}; //, new PhenotypeData(Phenotype.Hair, "blond", 1f), new PhenotypeData(Phenotype.Hair, "black", 1f), new PhenotypeData(Phenotype.Hair, "red", 1f)};
+
+        // Colortype variation from presentation
+        private List<PhenotypeData> eyeColors = new List<PhenotypeData>(){
+            new PhenotypeData(Phenotype.Iris, "darkbrown", 1f),
+            new PhenotypeData(Phenotype.Iris, "lightbrown", 1f),
+            new PhenotypeData(Phenotype.Iris, "amber", 1f),
+            new PhenotypeData(Phenotype.Iris, "green", 1f),
+            new PhenotypeData(Phenotype.Iris, "blue", 1f)
+            };
+        private List<PhenotypeData> skinColors = new List<PhenotypeData>(){
+            new PhenotypeData(Phenotype.Skin, "black", 1f),
+            new PhenotypeData(Phenotype.Skin, "darkbrown", 1f),
+            new PhenotypeData(Phenotype.Skin, "olive", 1f),
+            new PhenotypeData(Phenotype.Skin, "mediumwhite", 1f),
+            new PhenotypeData(Phenotype.Skin, "white", 1f),
+            new PhenotypeData(Phenotype.Skin, "pale", 1f)
+            };
+        private List<PhenotypeData> hairColors = new List<PhenotypeData>(){
+            new PhenotypeData(Phenotype.Hair, "black", 1f),
+            new PhenotypeData(Phenotype.Hair, "brown", 1f),
+            new PhenotypeData(Phenotype.Hair, "auburn", 1f),
+            new PhenotypeData(Phenotype.Hair, "red", 1f),
+            new PhenotypeData(Phenotype.Hair, "blonde", 1f),
+            new PhenotypeData(Phenotype.Hair, "grey", 1f)
+            };
 
         public DataManager()
         {
