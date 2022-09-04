@@ -23,14 +23,13 @@ namespace AnimController
 
         private IAnimationConnector currentlyRunningAnimation = null;
 
-<<<<<<< Updated upstream
-        private bool animationIsRunning = false;
-        public bool isFadingOut = false;
+
+
         private float runnTimeChaos = 25f; // 3min
         private float runnTimePheno = 25f; // 90s + 4s // edit: 180s + 4s
         private float currRunnTimeChaos = 0f;
         private float currRunnTimePheno = 0f;
-=======
+
         private float maxRuntimeChaos = 25f; // 3min
         private float maxRuntimePheno = 25f; // 90s + 4s
         private float currAnimationRuntime = 0f;
@@ -40,7 +39,7 @@ namespace AnimController
         private float currFadeoutRuntime = 0f;
 
         private AnimationState animationState = AnimationState.Init;
->>>>>>> Stashed changes
+
         
         
         private void Start()
