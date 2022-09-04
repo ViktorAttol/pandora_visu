@@ -16,7 +16,10 @@ MonoBehaviour:
   randomStartVelocity: 0.001
   attractionSpeedForce: 0.2
   blobSize: 0.4
-  knobSize: 0.1
+  knobSize: 0.05
   trisSize: 0.005
-  trisRate: 100000
+  trisRate: 60000
   blobsKnobsRate: 20000
+  crossFadeDuration: 30
+  fadeOutDuration: 240
+  displayDuration: 20

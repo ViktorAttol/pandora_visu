@@ -72,4 +72,4 @@ MonoBehaviour:
   debug: 0
   minMaxCylinderRadius: {x: 0.003, y: 0.004}
   cylinderResolution: 3
-  visibility: 1
+  visibility: 0.9
