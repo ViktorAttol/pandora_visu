@@ -4,10 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AnimController
-{
-    
-    
-    
+{ 
     public class AnimationController: MonoBehaviour, IAnimationController
     {
         private enum AnimationState
@@ -16,32 +13,22 @@ namespace AnimController
         }
         private IDataManager dataManager;
         private Action cbAnimationFinished;
-
-
+        
         public GameObject chaosAnimationPrefab;
         public GameObject phenoAnimationPrefab;
 
         private IAnimationConnector currentlyRunningAnimation = null;
 
-
-
-        private float runnTimeChaos = 25f; // 3min
-        private float runnTimePheno = 25f; // 90s + 4s // edit: 180s + 4s
-        private float currRunnTimeChaos = 0f;
-        private float currRunnTimePheno = 0f;
-
-        private float maxRuntimeChaos = 25f; // 3min
-        private float maxRuntimePheno = 25f; // 90s + 4s
+        private float maxRuntimeChaos = 10f; // 3min
+        private float maxRuntimePheno = 184f; // 90s + 4s
         private float currAnimationRuntime = 0f;
         
-        private float maxRuntimeChaosFadingOut = 25f; //
-        private float maxRuntimePhenoFadingOut = 4f; //4s
+        private float maxRuntimeChaosFadingOut = 5f; //
+        private float maxRuntimePhenoFadingOut = 0f; //4s
         private float currFadeoutRuntime = 0f;
 
         private AnimationState animationState = AnimationState.Init;
 
-        
-        
         private void Start()
         {
             dataManager = new DataManager();
@@ -79,7 +66,6 @@ namespace AnimController
                     break;
             }
         }
-
         
         /// <summary>
         /// instantiates chaos prefab and starts chaos animation and sets runchaos
@@ -128,7 +114,7 @@ namespace AnimController
             if (currAnimationRuntime >= maxRuntimePheno)
             {
                 animationState = AnimationState.StopPheno;
-                currentlyRunningAnimation.FadeOutAnimation();
+                //Todo currentlyRunningAnimation.FadeOutAnimation();
                 return;
             }
             currAnimationRuntime += Time.deltaTime;

@@ -65,6 +65,7 @@ public class DataManager: IDataManager, IReadReceiver, IPhenotypeReceiver
             string[] signalData = genomeSignalData.text.Split(new char[] {'\n'});
             //Debug.Log(signalData.Length);
             string[] geneData = genomeCSVData.text.Split(new char[] {'\n'});
+            //Debug.Log(geneData.Length);
             //if you wants to fasten startime limit length
             //for (int i = 1; i < geneData.Length; i++)
             for (int i = 1; i < 10000; i++) //signals are 60k

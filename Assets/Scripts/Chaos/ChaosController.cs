@@ -160,7 +160,7 @@ public class ChaosController : MonoBehaviour
     private void fadeCage(float stepSize)
     {
         float alpha = cageMaterial.GetFloat("_Alpha");
-        Debug.Log("Alpha: " + alpha);
+        //Debug.Log("Alpha: " + alpha);
         cageMaterial.SetFloat("_Alpha", alpha + stepSize); 
     }
 

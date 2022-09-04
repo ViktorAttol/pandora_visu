@@ -36,7 +36,7 @@ public class PhenotypeAnimationManager : MonoBehaviour, IAnimationConnector
 
     public void FadeOutAnimation()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     public void EndAnimation()
