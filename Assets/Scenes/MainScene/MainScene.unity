@@ -352,6 +352,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Volume
       objectReference: {fileID: 0}
+    - target: {fileID: 9186695287720734480, guid: 7116f0491cc50bd4795ba15233acf9ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9186695287720734483, guid: 7116f0491cc50bd4795ba15233acf9ed,
         type: 3}
       propertyPath: m_RootOrder
@@ -409,6 +414,73 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7116f0491cc50bd4795ba15233acf9ed, type: 3}
+--- !u!1 &1608605213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1608605214}
+  - component: {fileID: 1608605215}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1608605214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608605213}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1608605215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608605213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3ab2a686efac44f0ac9b4b68a3e040b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: chaos_sequence
+    clip: {fileID: 8300000, guid: 5421f0a3f83eb4a21be7a9bdec258ffe, type: 3}
+    source: {fileID: 0}
+    volume: 1
+    loop: 0
+  - name: chaos_loop
+    clip: {fileID: 8300000, guid: fbcf8ceead1484366bf6ff24bed722da, type: 3}
+    source: {fileID: 0}
+    volume: 1
+    loop: 1
+  - name: phenotyoes_sequence
+    clip: {fileID: 8300000, guid: fbcf8ceead1484366bf6ff24bed722da, type: 3}
+    source: {fileID: 0}
+    volume: 1
+    loop: 0
+  - name: phenotyoes_loop
+    clip: {fileID: 8300000, guid: fbcf8ceead1484366bf6ff24bed722da, type: 3}
+    source: {fileID: 0}
+    volume: 1
+    loop: 1
+  fadeDuration: 10
+  debug: 0
 --- !u!1 &1823688464
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +887,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036242955815443900, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bcc948320fafa9479ac5f1b8a8d4017, type: 3}

@@ -115,24 +115,26 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
     }
 
     // Fade Stuff
-    IEnumerator FadeAlpha (int fDuration, float start, float end)
+    IEnumerator FadeAlpha (float duration, float start, float end)
     {
         print("fade started.");
+
         bool active = true;
-        int fCount = 0;
+        float remaining = duration;
+
+        while (active)
         {
-            while (active)
-            {
-                float t = (float) fCount / fDuration;
-                float v = Mathf.Lerp(start, end, t);
-                vfx.SetFloat("fadeFactor", v);
-                fCount++;
+            float t = 1 - remaining / duration; // t : 0 -> 1
+            float v = Mathf.Lerp(start, end, t);
 
-                if (fCount > fDuration) active = false;
+            vfx.SetFloat("fadeFactor", v);
 
-                yield return null;
-            }
+            remaining -= Time.deltaTime;
+            if (remaining <= 0) active = false;
+            yield return null;
         }
+
+        vfx.SetFloat("fadeFactor", end);
         print("fade finished.");
     }
 }

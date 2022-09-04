@@ -15,7 +15,6 @@ public class DataManager: IDataManager, IReadReceiver, IPhenotypeReceiver
 
         // Colortype variation from presentation
         private List<PhenotypeData> eyeColors = new List<PhenotypeData>(){
-            //new PhenotypeData(Phenotype.Iris, "test", 1f),
             new PhenotypeData(Phenotype.Iris, "darkbrown", 1f),
             new PhenotypeData(Phenotype.Iris, "lightbrown", 1f),
             new PhenotypeData(Phenotype.Iris, "amber", 1f),

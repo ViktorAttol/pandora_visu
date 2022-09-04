@@ -20,6 +20,6 @@ MonoBehaviour:
   trisSize: 0.005
   trisRate: 60000
   blobsKnobsRate: 20000
-  crossFadeDuration: 30
-  fadeOutDuration: 240
-  displayDuration: 30
+  crossFadeDuration: 1
+  fadeOutDuration: 4
+  displayDuration: 60
