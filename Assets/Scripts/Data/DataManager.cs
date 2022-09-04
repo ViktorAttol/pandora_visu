@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
@@ -11,7 +12,6 @@ public class DataManager: IDataManager, IReadReceiver, IPhenotypeReceiver
         private List<ReadData> reads;
         private int readIterator = 0;
         private List<PhenotypeData> phenotypeDatas;
-
 
         // Colortype variation from presentation
         private List<PhenotypeData> eyeColors = new List<PhenotypeData>(){
@@ -64,7 +64,7 @@ public class DataManager: IDataManager, IReadReceiver, IPhenotypeReceiver
             var genomeCSVData = Resources.Load<TextAsset>("GeneData/FastQ_Reads");
             var genomeSignalData = Resources.Load<TextAsset>("GeneData/Fast5_Reads");
             string[] signalData = genomeSignalData.text.Split(new char[] {'\n'});
-            Debug.Log(signalData.Length);
+            //Debug.Log(signalData.Length);
             string[] geneData = genomeCSVData.text.Split(new char[] {'\n'});
             //if you wants to fasten startime limit length
             //for (int i = 1; i < geneData.Length; i++)
@@ -89,14 +89,15 @@ public class DataManager: IDataManager, IReadReceiver, IPhenotypeReceiver
         {
             int[] output = new int[6];
             string input = row;
-            input = input.Remove(0, 1);
-            input = input.Remove(input.Length -1);
+            //input = input.Remove(0, 1);
+            //input = input.Remove(input.Length -1);
+            input = input.Replace("[", "").Replace("]", "");
             string[] signals = input.Split(new char[] {' '});
             int iterator = 0;
             for (int i = 0; i < signals.Length; i++)
             {
                 if (signals[i].Equals("...") || signals[i].Equals("")) continue;
-                //Debug.Log(signals[i]);
+                Debug.Log(signals[i]);
                 output[iterator] = Int32.Parse(signals[i]);
                 iterator++;
             }
