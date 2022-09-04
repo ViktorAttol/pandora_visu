@@ -130,7 +130,7 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
 
                 if (fCount > fDuration) active = false;
 
-                yield return new WaitForFixedUpdate();
+                yield return null;
             }
         }
         print("fade finished.");

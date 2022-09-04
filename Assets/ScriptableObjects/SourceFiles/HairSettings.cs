@@ -12,7 +12,7 @@ public class HairSettings : ScriptableObject
     public AnimationCurve morphCurve;
     public AnimationCurve distributionCurve;
     [Range(1f,5f)] public float lengthRadius = 2f;
-    [MinMaxSlider(0.08f,1f)] public Vector2 minMaxHeightRadius = new Vector2(0.5f, 0.7f);
+    [MinMaxSlider(0.1f, 2f)] public Vector2 minMaxHeightRadius = new Vector2(0.5f, 0.7f);
     [Range(20,160)] public int resolution = 140;
     [MinMaxSlider(1,20)] public Vector2Int minMaxHairAmount = new Vector2Int(10,15);
     [MinMaxSlider(3,80)] public Vector2Int minMaxHairLength = new Vector2Int(40,60);

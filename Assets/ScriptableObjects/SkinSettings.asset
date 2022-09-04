@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SkinSettings
   m_EditorClassIdentifier: 
   generationRate: 0.01
-  distributionRadius: {x: 0.4, y: 0.5}
-  blobRadius: {x: 0.15, y: 0.25}
+  distributionRadius: {x: 0.48237312, y: 0.58237314}
+  blobRadius: {x: 0.24531749, y: 0.34531748}
   perlinScale: 5
   displacementIntensity: 0.4
   blobResolution: 20
   blobAmount: 3
   debug: 0
-  visibility: 0.4
+  visibility: 0.5

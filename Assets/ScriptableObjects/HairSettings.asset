@@ -61,8 +61,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  lengthRadius: 2
-  minMaxHeightRadius: {x: 0.5, y: 0.7}
+  lengthRadius: 2.5
+  minMaxHeightRadius: {x: 1.0012258, y: 1.6000001}
   resolution: 140
   minMaxHairAmount: {x: 10, y: 15}
   minMaxHairLength: {x: 40, y: 60}
@@ -73,4 +73,4 @@ MonoBehaviour:
   debug: 0
   minMaxCylinderRadius: {x: 0.001, y: 0.005}
   cylinderResolution: 5
-  visibility: 0.04
+  visibility: 0.3

@@ -12,6 +12,7 @@ using Net;
 
         // Colortype variation from presentation
         private List<PhenotypeData> eyeColors = new List<PhenotypeData>(){
+            //new PhenotypeData(Phenotype.Iris, "test", 1f),
             new PhenotypeData(Phenotype.Iris, "darkbrown", 1f),
             new PhenotypeData(Phenotype.Iris, "lightbrown", 1f),
             new PhenotypeData(Phenotype.Iris, "amber", 1f),
@@ -31,8 +32,7 @@ using Net;
             new PhenotypeData(Phenotype.Hair, "brown", 1f),
             new PhenotypeData(Phenotype.Hair, "auburn", 1f),
             new PhenotypeData(Phenotype.Hair, "red", 1f),
-            new PhenotypeData(Phenotype.Hair, "blonde", 1f),
-            new PhenotypeData(Phenotype.Hair, "grey", 1f)
+            new PhenotypeData(Phenotype.Hair, "blonde", 1f)
             };
 
         public DataManager()
