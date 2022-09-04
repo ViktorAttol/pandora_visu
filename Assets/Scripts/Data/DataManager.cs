@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Net;
+using UnityEngine;
+using Random = System.Random;
 
 
-    public class DataManager: IDataManager, IReadReceiver, IPhenotypeReceiver
+public class DataManager: IDataManager, IReadReceiver, IPhenotypeReceiver
     {
         private List<ReadData> reads;
+        private int readIterator = 0;
         private List<PhenotypeData> phenotypeDatas;
 
 
@@ -39,6 +42,7 @@ using Net;
         {
             reads = new List<ReadData>();
             phenotypeDatas = new List<PhenotypeData>();
+            LoadDataFromCSV();
         }
         
 
@@ -57,13 +61,83 @@ using Net;
 
         public void LoadDataFromCSV()
         {
-            
+            var genomeCSVData = Resources.Load<TextAsset>("GeneData/FastQ_Reads");
+            var genomeSignalData = Resources.Load<TextAsset>("GeneData/Fast5_Reads");
+            string[] signalData = genomeSignalData.text.Split(new char[] {'\n'});
+            Debug.Log(signalData.Length);
+            string[] geneData = genomeCSVData.text.Split(new char[] {'\n'});
+            //if you wants to fasten startime limit length
+            //for (int i = 1; i < geneData.Length; i++)
+            for (int i = 1; i < 50000; i++)
+            {            
+                //Debug.Log(signalData[i]);
+
+                string data = geneData[i];
+                if (data.Length < 2) continue;
+                string[] dataRow = data.Split(new[] {','}, 3);
+                ReadData dataContainer = new ReadData();
+                dataContainer.data = dataRow[1];
+                dataContainer.quality = dataRow[2];
+                //Debug.Log(signalData[i]);
+                dataContainer.signals = GetSignalForReadFromRow(signalData[i]);// be aware of dragons
+                dataContainer.id = i - 1;
+                reads.Add(dataContainer);
+            }
         }
+
+        private int[] GetSignalForReadFromRow(string row)
+        {
+            int[] output = new int[6];
+            string input = row;
+            input = input.Remove(0, 1);
+            input = input.Remove(input.Length -1);
+            string[] signals = input.Split(new char[] {' '});
+            int iterator = 0;
+            for (int i = 0; i < signals.Length; i++)
+            {
+                if (signals[i].Equals("...") || signals[i].Equals("")) continue;
+                //Debug.Log(signals[i]);
+                output[iterator] = Int32.Parse(signals[i]);
+                iterator++;
+            }
+            return output;
+        }
+
+        
         
         public ReadData GetRead()
         {
             //if (reads.Count <= 0) return new ReadData();
             //return reads.First();
+            ReadData read = reads[readIterator];
+            readIterator++;
+            if (readIterator >= reads.Count) readIterator = 0;
+            return read;
+        }
+
+        public List<PhenotypeData> GetPhenotypes()
+        {
+            return GetRandomPhenotypes();
+        }
+
+        public void ClearLists()
+        {
+            reads.Clear();
+            phenotypeDatas.Clear();
+        }
+
+        public void ReceiveNewRead(ReadData read)
+        {
+            reads.Add(read);
+        }
+
+        public void ReceiveNewPhenotype(List<PhenotypeData> phenotypeData)
+        {
+            phenotypeDatas.AddRange(phenotypeData);
+        }
+        
+        private ReadData GetDummyRead()
+        {
             ReadData read = new ReadData();
             read.data =  "CATTGTACTTCGTTCAATTTTTCGAATTTGAGTGTTTAACCGTTTTCGCATTTATCGTGAAACGCTTTCGCGTTTTTCGTGCACCGCTTCAATATACCAAATGTCATATCTATAATCTGGTTTTGTTTTTTTGAATAATAAATATTTTCATTCTTGCGGTTTGGAGGAATTGATTCAAATTCAAGCAGAAATAATTCCAGGAGTCCAAAATATGTATCAATGCAGCATTTGAGCAAGTGCGATAAATCTTTAAGTGCTTCTTTCCCATGGTTTTAGTCATAAAACTCTCCATTTTGATAGGTTGCATGCTAGATGCTGAAGTATATTTTTGAAAATTTGTCGATGCTACTTAACTGTCAATATGGCCACAAGTTGTTTGATCTTTGCAATGATTTATATCAGAAACCATATAGTAAATTAGTTACACAGGAAATTTTTATATGTCCTTATTATCATTCATTATGTATTAAAATTAGAGTTGTGGCTTGGCTCTGCTAACACGTTGCTCATAGGAGATATGGTAGAGCCGCAGACACGTCGTATGCAGGAACGTGCTGCGGCTGGCTGGTGAACTTCCGATAGTGCGGGTGTTAGACGTTGATTCTTATACCGATTTTACATATTTTTTGCATGAGAA";
             read.quality = "$&'(-(((43,579'((,'%%'(&%$$49]CA>:3211:=CBA26--/5;99')()-77>@@?DC@6262356666636560-+,79,,,*)*4@A943465D@BB<;;;90,158:=@:/..9988-*,()--9<;<10-/))*)+)&.)'&&%%.00//2.//59767.++.2.-*(''')+61***./,,@]]]];:::11.+,7::CAE?<D]<889?4@?92]/02..00.&&%%'37:0,,+./'&)'436@59ff02df-872f-48a6-9617-abaf4c52385e runid=51bf4723185f4e8abde277e8f9e7dfca497713b0 read=16 ch=391 start_time=2022-06-23T10:22:44.714574+02:00 flow_cell_id=FAT29260 protocol_group_id=Rapid_Lambda_control sample_id=SK1420024 parent_read_id=59ff02df-872f-48a6-9617-abaf4c52385e basecall_model_version_id=2021-05-17_dna_r9.4.1_minion_96_29d8704b";
@@ -239,26 +313,5 @@ using Net;
                 435, 470, 511, 501, 496, 518, 536, 553, 512, 502, 486, 472, 431, 440
             };
             return read;
-        }
-
-        public List<PhenotypeData> GetPhenotypes()
-        {
-            return GetRandomPhenotypes();
-        }
-
-        public void ClearLists()
-        {
-            reads.Clear();
-            phenotypeDatas.Clear();
-        }
-
-        public void ReceiveNewRead(ReadData read)
-        {
-            reads.Add(read);
-        }
-
-        public void ReceiveNewPhenotype(List<PhenotypeData> phenotypeData)
-        {
-            phenotypeDatas.AddRange(phenotypeData);
         }
     }
