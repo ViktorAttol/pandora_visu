@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AnimController
@@ -9,41 +10,38 @@ namespace AnimController
     
     public class AnimationController: MonoBehaviour, IAnimationController
     {
-        private enum AnimationType
+        private enum AnimationState
         {
-            Chaos, Pheno, None
+            Init, StartChaos, StartPheno, RunChaos, StopChaos, RunPheno, StopPheno
         }
-        public GameObject prefabTest;
-        
         private IDataManager dataManager;
         private Action cbAnimationFinished;
-        public GameObject animationConnector;
-        public GameObject idleAnimationPrefab;
 
-        private GameObject currentAnimationConnector;
-        private GameObject nextAnimationConnector;
-
-        private GameObject idleAnimation;
-        [SerializeField] public List<GameObject> animations = new List<GameObject>();
-        private int currentAnimationIndex;
 
         public GameObject chaosAnimationPrefab;
         public GameObject phenoAnimationPrefab;
 
-        private AnimationType currentlyRunninganimationType = AnimationType.None;
         private IAnimationConnector currentlyRunningAnimation = null;
 
+<<<<<<< Updated upstream
         private bool animationIsRunning = false;
         public bool isFadingOut = false;
         private float runnTimeChaos = 25f; // 3min
         private float runnTimePheno = 25f; // 90s + 4s // edit: 180s + 4s
         private float currRunnTimeChaos = 0f;
         private float currRunnTimePheno = 0f;
+=======
+        private float maxRuntimeChaos = 25f; // 3min
+        private float maxRuntimePheno = 25f; // 90s + 4s
+        private float currAnimationRuntime = 0f;
         
-        private float runnTimeChaosFadingOut = 25f; //
-        private float runnTimePhenoFadingOut = 4f; //4s
-        private float currRunnTimeChaosFadingOut = 0f;
-        private float currRunnTimePhenoFadingOut = 0f;
+        private float maxRuntimeChaosFadingOut = 25f; //
+        private float maxRuntimePhenoFadingOut = 4f; //4s
+        private float currFadeoutRuntime = 0f;
+
+        private AnimationState animationState = AnimationState.Init;
+>>>>>>> Stashed changes
+        
         
         private void Start()
         {
@@ -52,97 +50,128 @@ namespace AnimController
 
         void Update()
         {
-            ReadInput();
+            RunState();
+        }
+
+        public void RunState()
+        {
+            switch (animationState)
+            {
+                case AnimationState.RunChaos:
+                    OnCaseRunChaos();
+                    break;
+                case AnimationState.RunPheno:
+                    OnCaseRunPheno();
+                    break;
+                case AnimationState.StartChaos:
+                    OnCaseStartChaos();
+                    break;
+                case AnimationState.StartPheno:
+                    OnCaseStartPheno();
+                    break;
+                case AnimationState.StopChaos:
+                    OnCaseStopChaos();
+                    break;
+                case AnimationState.StopPheno:
+                    OnCaseStopPheno();
+                    break;
+                case AnimationState.Init:
+                    animationState = AnimationState.StartChaos;
+                    break;
+            }
+        }
+
+        
+        /// <summary>
+        /// instantiates chaos prefab and starts chaos animation and sets runchaos
+        /// </summary>
+        private void OnCaseStartChaos()
+        {
+            GameObject newAnimation = Instantiate(chaosAnimationPrefab, transform);
+            IAnimationConnector animationConnector = newAnimation.GetComponent<IAnimationConnector>();
+            currentlyRunningAnimation = animationConnector;
+            currentlyRunningAnimation.SetDataManager(dataManager);
+            currentlyRunningAnimation.StartAnimation();
+            
+            animationState = AnimationState.RunChaos;
+            currAnimationRuntime = 0f;
+            currFadeoutRuntime = 0f;
+        }
+        
+        /// <summary>
+        /// instantiates pheno prefab and starts pheno animation and sets runpheno
+        /// </summary>
+        private void OnCaseStartPheno()
+        {
+            GameObject newAnimation = Instantiate(phenoAnimationPrefab, transform);
+            IAnimationConnector animationConnector = newAnimation.GetComponent<IAnimationConnector>();
+            currentlyRunningAnimation = animationConnector;
+            currentlyRunningAnimation.SetDataManager(dataManager);
+            currentlyRunningAnimation.StartAnimation();
+            
+            animationState = AnimationState.RunPheno;
+            currAnimationRuntime = 0f;
+            currFadeoutRuntime = 0f;
+        }
+        private void OnCaseRunChaos()
+        {
+            if (currAnimationRuntime >= maxRuntimeChaos)
+            {
+                animationState = AnimationState.StopChaos;
+                currentlyRunningAnimation.FadeOutAnimation();
+                return;
+            }
+            currAnimationRuntime += Time.deltaTime;
+        }
+        
+        private void OnCaseRunPheno()
+        {
+            if (currAnimationRuntime >= maxRuntimePheno)
+            {
+                animationState = AnimationState.StopPheno;
+                currentlyRunningAnimation.FadeOutAnimation();
+                return;
+            }
+            currAnimationRuntime += Time.deltaTime;
+        }
+        
+        private void OnCaseStopChaos()
+        {
+            if (currFadeoutRuntime >= maxRuntimeChaosFadingOut)
+            {
+                animationState = AnimationState.StartPheno;
+                currentlyRunningAnimation.EndAnimation();
+                return;
+            }
+            currFadeoutRuntime += Time.deltaTime;
+        }
+        
+        private void OnCaseStopPheno()
+        {
+            if (currFadeoutRuntime >= maxRuntimePhenoFadingOut)
+            {
+                animationState = AnimationState.StartChaos;
+                currentlyRunningAnimation.EndAnimation();
+                return;
+            }
+            currFadeoutRuntime += Time.deltaTime;
         }
 
         public void SetDataManager(IDataManager iDataManager)
         {
             dataManager = iDataManager;
         }
-
-        private GameObject BuildAnimationWithConnector(GameObject anim)
-        {
-            GameObject connector = Instantiate(animationConnector, transform);
-            AnimationConnector controllerComponent = connector.GetComponent<AnimationConnector>();
-            controllerComponent.SetAnimationPrefab(anim);
-            return connector;
-        }
-
-        private void RunAnimation(GameObject prefab)
-        {
-            nextAnimationConnector = BuildAnimationWithConnector(prefab);
-            AnimationConnector controllerComponent = nextAnimationConnector.GetComponent<AnimationConnector>();
-            controllerComponent.SubscribeForAnimationFinished(OnAnimationFinished);
-            if (currentAnimationConnector != null)
-            {
-                AnimationConnector currentControllerComponent = currentAnimationConnector.GetComponent<AnimationConnector>();
-                currentControllerComponent.EndAnimation();
-                Destroy(currentAnimationConnector);
-            }
-            controllerComponent.StartAnimation();
-            currentAnimationConnector = nextAnimationConnector;
-        }
-
-        private void SwitchAnimation()
-        {
-            if (currentlyRunningAnimation == null || currentlyRunninganimationType == AnimationType.Pheno)
-            {
-                DestroyAndStartAnimation(AnimationType.Chaos);
-            }
-
-            else if (currentlyRunninganimationType == AnimationType.Chaos)
-            {
-                DestroyAndStartAnimation(AnimationType.Pheno);
-            }
-        }
-
-        private void DestroyAndStartAnimation(AnimationType typeToStart)
-        {
-            if(currentlyRunningAnimation != null) currentlyRunningAnimation.EndAnimation();
-            
-            GameObject newAnimation = null;
-            if (typeToStart == AnimationType.Chaos)
-            {
-                newAnimation = Instantiate(chaosAnimationPrefab, transform);
-                currentlyRunninganimationType = AnimationType.Chaos;
-            }
-            
-            if (typeToStart == AnimationType.Pheno)
-            {
-                newAnimation = Instantiate(phenoAnimationPrefab, transform);
-                currentlyRunninganimationType = AnimationType.Pheno;
-            }
-            
-            IAnimationConnector animationConnector = newAnimation.GetComponent<IAnimationConnector>();
-            currentlyRunningAnimation = animationConnector;
-            currentlyRunningAnimation.SetDataManager(dataManager);
-            currentlyRunningAnimation.StartAnimation();
-        }
-
-        private void ReadInput()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SwitchAnimation();
-
-                //SwitchAnimations();
-            }
-        }
         
-        public void RunIdleAnimation()
-        {
-            IAnimationConnector connector = prefabTest.GetComponent<IAnimationConnector>();
-            connector.SetDataManager(dataManager);
-            connector.SubscribeForAnimationFinished(CurrentAnimationFinished);
-            connector.StartAnimation();
-            
-            //RunAnimation(idleAnimationPrefab);
-            //urrentAnimationIndex = -1;
-        }
+       
 
         private void CurrentAnimationFinished()
         {
             
+        }
+
+        public void RunIdleAnimation()
+        {
+            throw new NotImplementedException();
         }
 
         public void StartAnimations()
@@ -160,22 +189,7 @@ namespace AnimController
             throw new System.NotImplementedException();
         }
 
-        private void SwitchAnimations()
-        {
-            currentAnimationIndex++;
-            if (currentAnimationIndex > animations.Count)
-            {
-                return;
-            }
-            if (currentAnimationIndex == animations.Count)
-            {
-                RunAnimation(animations[0]);
-            }
-            else
-            {
-                RunAnimation(animations[currentAnimationIndex]);
-            }
-        }
+        
 
         private void OnAnimationsFinished()
         {
