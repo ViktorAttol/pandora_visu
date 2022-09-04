@@ -7,12 +7,15 @@ public class ChaosAnimationManager : MonoBehaviour, IAnimationConnector
 {
     private IDataManager dataManager;
     // Start is called before the first frame update
-    public SequenceAnimationManager sequenceAnimationManager;
+    public ChaosAnimationDataProcessor chaosAnimationDataProcessor;
+    public ChaosController chaosController;
     
      void Start()
      {
-         //7sequenceAnimationManager = GetComponentInChildren<SequenceAnimationManager>();
-         //if(sequenceAnimationManager == null)Debug.Log("no chaos sequence animation manager found!!!");
+         if (chaosAnimationDataProcessor != null)
+        {
+            chaosAnimationDataProcessor.SetChaosController(chaosController);
+        }
      }
     
 
@@ -25,20 +28,22 @@ public class ChaosAnimationManager : MonoBehaviour, IAnimationConnector
     public void SetDataManager(IDataManager dataManager)
     {
         this.dataManager = dataManager;
-        sequenceAnimationManager.SetDataManager(dataManager);
+        chaosAnimationDataProcessor.SetDataManager(dataManager);
     }
 
     public void StartAnimation()
     {
+        chaosController.state = ChaosController.AnimationState.Run;
     }
 
     public void FadeOutAnimation()
     {
-        throw new NotImplementedException();
+        chaosController.state = ChaosController.AnimationState.FadeOut;
     }
 
     public void EndAnimation()
     {
+        chaosController.state = ChaosController.AnimationState.Inactive;
         Destroy(gameObject);
     }
 
