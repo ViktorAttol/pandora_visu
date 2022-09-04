@@ -41,7 +41,7 @@ public class TakeScreencapture : MonoBehaviour
         vidCounter = 0;
         recAni = false;
 
-        print("Screencapture function enabled. In GameView, press the 's' key to save the current frame. To start and stop video capture press 'a'.");
+        //print("Screencapture function enabled. In GameView, press the 's' key to save the current frame. To start and stop video capture press 'a'.");
     }
 
     // Update is called once per frame

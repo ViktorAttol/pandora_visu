@@ -66,7 +66,7 @@ public class ChaosAnimationDataProcessor : MonoBehaviour
 
     private void OnCaseIdle()
     {
-        chaosController.state = ChaosController.AnimationState.Idle;
+        if(dataManager != null) chaosController.state = ChaosController.AnimationState.Idle;
     }
 
     private void OnCaseWaitingForData()
