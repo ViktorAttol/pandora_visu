@@ -6,66 +6,154 @@ using System.Linq;
 
 public class ChaosController : MonoBehaviour
 {
-    private readonly float[] NUC_RATIOS = new float[]{0.283f, 0.207f, 0.207f, 0.303f};
+    public enum AnimationState
+    {
+        Idle, Inactive, Run, FadeOut
+    }
+
+    private readonly float[] NUC_RATIOS = new float[] { 0.283f, 0.207f, 0.207f, 0.303f };
 
     public VisualEffect chaos;
     public VisualEffect background;
-    //public VisualEffect phenotype;
+    public VisualEffect cloud;
 
     public GameObject cage;
-    public bool active = true;
 
-    [SerializeField]  private Bounds cageBounds;
+    [SerializeField] private Bounds cageBounds;
 
-    [SerializeField] private int nucleotide = -1;
-    [SerializeField] private int quality = 0;
-    [SerializeField] private int acc_quality = 0;
-    [SerializeField] private int signal = 0;
-    [SerializeField] private int count = 0;
+    [SerializeField] private int nucleotide;
+    [SerializeField] private int quality;
+    [SerializeField] private int signal;
 
-    [SerializeField]  private int[] nucCounts = new int[4];
-    [SerializeField]  private Vector3[] speeds = new Vector3[4];
-    [SerializeField]  private Vector3[] magnitudes = new Vector3[4];
-    [SerializeField]  private Vector3[] positions = new Vector3[4];
-    [SerializeField]  private float[] radia = new float[4];
+    [SerializeField] private int[] nucCounts = new int[4];
+    [SerializeField] private Vector3[] speeds = new Vector3[4];
+    [SerializeField] private Vector3[] magnitudes = new Vector3[4];
+    [SerializeField] private Vector3[] positions = new Vector3[4];
+    [SerializeField] private float[] radia = new float[4];
     [SerializeField] private float intensity = 0.1f;
 
+    public AnimationState state = AnimationState.Inactive;
 
     // Start is called before the first frame update
     void Start()
     {
-        //cageBounds = cage.GetComponent<Renderer>().bounds;
+        cageBounds = cage.GetComponent<Renderer>().bounds;
+        chaos.SetVector3("Cage_Size", cageBounds.size);
+        nucleotide = -1;
+        quality = 0;
+        signal = 400;
+        StartCoroutine(startFadeOut());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (active)
+        StateLoop();
+    }
+
+    public void setNucleotide(int nextNuc)
+    {
+        this.nucleotide = nextNuc;
+    }
+
+    public void setQualityScore(int nextScore)
+    {
+        this.quality = nextScore;
+        chaos.SetVector3("Turbulence_Multiplier", getTurbulenceMultiplier());
+
+    }
+
+    public void setSignal(int nextSignal)
+    {
+        this.signal = nextSignal;
+    }
+
+    private void StateLoop()
+    {
+        switch (state)
         {
-            setNucleotideCounts(nucleotide);
-            updateNucleotideSpheres();
-            updateChaos();
-            setBackgroundTransform();
+            case AnimationState.Idle:
+                OnCaseIdle();
+                break;
+            case AnimationState.Inactive:
+                OnCaseInactive();
+                break;
+            case AnimationState.Run:
+                OnCaseRun();
+                break;
+            case AnimationState.FadeOut:
+                OnCaseFadeOut();
+                break;
+
+        }
+    }
+
+    private void OnCaseIdle()
+    {
+
+    }
+
+    private void OnCaseInactive()
+    {
+        if (chaos.isActiveAndEnabled)
+            chaos.enabled = false;
+
+        if (background.isActiveAndEnabled)
+            background.enabled = false;
+
+        if (cloud.isActiveAndEnabled)
+            cloud.enabled = false;
+
+    }
+
+    private void OnCaseRun()
+    {
+        if (!chaos.isActiveAndEnabled)
+            chaos.enabled = true;
+
+        if (!background.isActiveAndEnabled)
+            background.enabled = true;
+
+        setNucleotideCounts(nucleotide);
+        updateNucleotideSpheres();
+        updateChaos();
+        setBackgroundTransform();
+    }
+
+    private void OnCaseFadeOut()
+    {
+        if (cage.transform.position.z < 0.0f)
+        {
+            moveToCamera(0.005f);
+            updateNucleotideSpheres();  
+        } else if (cage.transform.position.z > 2.0f)
+        {
+            background.Stop();
+            chaos.Stop();
+        } else
+        {
+            moveToCamera(0.005f);
+        }
+    }
+
+    private void moveToCamera(float stepSize)
+    {
+        float z = cage.transform.position.z;
+        Debug.Log(z);
+        cage.GetComponent<Transform>().position = new Vector3(0.0f, 0.0f, z + stepSize);
+        if (z < 0.0f)
+        {
+            chaos.GetComponent<Transform>().position = new Vector3(0.0f, 0.0f, z + stepSize);
         }
     }
 
 
-    public void getNextNuc(int nextNuc)
+    private IEnumerator startFadeOut()
     {
-        nucleotide = nextNuc;
+        yield return new WaitForSeconds(120);
+        state = AnimationState.FadeOut;
     }
 
-    public void getNextScore(int nextScore)
-    {
-        quality = nextScore;
-        acc_quality += quality;
-        count ++;
-    }
-
-    public void getNextSignal(int nextSignal)
-    {
-        signal = nextSignal;
-    }
 
     private void setNucleotideCounts(int nextNuc)
     {
@@ -85,22 +173,19 @@ public class ChaosController : MonoBehaviour
     {
         chaos.SetVector3("Chaos_Bounds", magnitudes[0]);
         chaos.SetVector3("Chaos_Magnitude", magnitudes[1]);
-        chaos.SetVector3("Turbulence_Multiplier", getTurbulenceMultiplier());
     }
 
     private Vector3 getTurbulenceMultiplier()
     {
-        int mag = quality;
-
-        return new Vector3(0, mag / 2, 0);
+        return new Vector3(0, quality, 0);
     }
 
     private void updateNucleotideSpheres()
     {
         for (int i = 0; i < 4; i++)
         {
-            magnitudes[i] = setMagnitude(i);
-            speeds[i] = setSpeed(i);
+            magnitudes[i] = getMagnitude(i);
+            speeds[i] = getSpeed(i);
             positions[i] = getSpherePosition(speeds[i], magnitudes[i]);
             radia[i] = getSphereRadius(i, 0.1f);
         }
@@ -117,18 +202,18 @@ public class ChaosController : MonoBehaviour
         chaos.SetVector3("T_Pos", positions[3]);
         chaos.SetFloat("T_Radius", radia[3]);
 
-        intensity = setNucTurbulenceIntensity();
+        intensity = getNucTurbulenceIntensity();
         chaos.SetFloat("Turbulence_Intensity", intensity);
 
     }
 
-    private Vector3 setSpeed(int nucInd)
+    private Vector3 getSpeed(int nucInd)
     {
         float ratio = (float) nucCounts[nucInd] / nucCounts.Sum();
         return new Vector3(1, ratio, 1);
     }
 
-    private Vector3 setMagnitude(int nucInd)
+    private Vector3 getMagnitude(int nucInd)
     {
         float mag = magnitudes[nucInd].x;
 
@@ -162,7 +247,7 @@ public class ChaosController : MonoBehaviour
         }
     }
 
-    private float setNucTurbulenceIntensity()
+    private float getNucTurbulenceIntensity()
     {
         if (intensity > 0.1f)
             intensity -= 0.01f;
