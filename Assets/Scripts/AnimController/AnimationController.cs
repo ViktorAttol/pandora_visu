@@ -32,6 +32,18 @@ namespace AnimController
 
         private AnimationType currentlyRunninganimationType = AnimationType.None;
         private IAnimationConnector currentlyRunningAnimation = null;
+
+        private bool animationIsRunning = false;
+        public bool isFadingOut = false;
+        private float runnTimeChaos = 25f; // 3min
+        private float runnTimePheno = 25f; // 90s + 4s
+        private float currRunnTimeChaos = 0f;
+        private float currRunnTimePheno = 0f;
+        
+        private float runnTimeChaosFadingOut = 25f; //
+        private float runnTimePhenoFadingOut = 4f; //4s
+        private float currRunnTimeChaosFadingOut = 0f;
+        private float currRunnTimePhenoFadingOut = 0f;
         
         private void Start()
         {
