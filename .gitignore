@@ -94,6 +94,5 @@ crashlytics-build.properties
 
 # End of https://www.gitignore.io/api/visualstudiocode
 Assets/Resources/GeneData/FastQ_Reads.csv
-Assets/Resources/Sound/
 Assets/Resources/GeneData/Fast5_short.txt
 Assets/Resources/GeneData/Fast5_short.txt.meta
