@@ -33,7 +33,7 @@ public class ChaosAnimationManager : MonoBehaviour, IAnimationConnector
 
     public void StartAnimation()
     {
-        chaosController.state = ChaosController.AnimationState.Run;
+        chaosController.state = ChaosController.AnimationState.Start;
     }
 
     public void FadeOutAnimation()

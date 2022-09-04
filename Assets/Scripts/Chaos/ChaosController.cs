@@ -8,7 +8,7 @@ public class ChaosController : MonoBehaviour
 {
     public enum AnimationState
     {
-        Idle, Inactive, Run, FadeOut
+        Idle, Inactive, Start, Run, FadeOut
     }
 
     private readonly float[] NUC_RATIOS = new float[] { 0.283f, 0.207f, 0.207f, 0.303f };
@@ -18,8 +18,10 @@ public class ChaosController : MonoBehaviour
     public VisualEffect cloud;
 
     public GameObject cage;
+    
 
-    [SerializeField] private Bounds cageBounds;
+    private Bounds cageBounds;
+    private Material cageMaterial;
 
     [SerializeField] private int nucleotide;
     [SerializeField] private int quality;
@@ -38,11 +40,16 @@ public class ChaosController : MonoBehaviour
     void Start()
     {
         cageBounds = cage.GetComponent<Renderer>().bounds;
-        chaos.SetVector3("Cage_Size", cageBounds.size);
+        cageMaterial = cage.GetComponent<Renderer>().material;
+        cageMaterial.SetFloat("_Alpha", 0.0f);
         nucleotide = -1;
         quality = 0;
         signal = 400;
-        StartCoroutine(startFadeOut());
+        chaos.SetVector3("Cage_Size", cageBounds.size);
+        chaos.enabled = false;
+        background.enabled = false;
+
+        //StartCoroutine(startFadeOut());
     }
 
     // Update is called once per frame
@@ -78,6 +85,9 @@ public class ChaosController : MonoBehaviour
             case AnimationState.Inactive:
                 OnCaseInactive();
                 break;
+            case AnimationState.Start:
+                OnCaseStart();
+                break;
             case AnimationState.Run:
                 OnCaseRun();
                 break;
@@ -106,6 +116,16 @@ public class ChaosController : MonoBehaviour
 
     }
 
+    private void OnCaseStart()
+    {
+        if (cageMaterial.GetFloat("_Alpha") < 1.0f)
+            fadeCage(0.001f);
+        else
+        {
+            state = AnimationState.Run;
+        }
+    }
+
     private void OnCaseRun()
     {
         if (!chaos.isActiveAndEnabled)
@@ -122,29 +142,44 @@ public class ChaosController : MonoBehaviour
 
     private void OnCaseFadeOut()
     {
-        if (cage.transform.position.z < 0.0f)
+        if (cageMaterial.GetFloat("_Alpha") > 0.0f)
         {
-            moveToCamera(0.005f);
-            updateNucleotideSpheres();  
-        } else if (cage.transform.position.z > 2.0f)
+            fadeCage(-0.001f);
+            if (cage.transform.position.z < -5.0f)
+            {
+                moveToCamera(0.001f);
+                updateNucleotideSpheres();
+            }
+        } else 
         {
-            background.Stop();
-            chaos.Stop();
-        } else
-        {
-            moveToCamera(0.005f);
-        }
+            cageMaterial.SetFloat("_Alpha", 0.0f);
+            StartCoroutine(stopGraphs(10));
+        } 
+    }
+
+    private void fadeCage(float stepSize)
+    {
+        float alpha = cageMaterial.GetFloat("_Alpha");
+        Debug.Log("Alpha: " + alpha);
+        cageMaterial.SetFloat("_Alpha", alpha + stepSize); 
     }
 
     private void moveToCamera(float stepSize)
     {
         float z = cage.transform.position.z;
-        Debug.Log(z);
         cage.GetComponent<Transform>().position = new Vector3(0.0f, 0.0f, z + stepSize);
         if (z < 0.0f)
         {
             chaos.GetComponent<Transform>().position = new Vector3(0.0f, 0.0f, z + stepSize);
         }
+    }
+
+    private IEnumerator stopGraphs(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        background.Stop();
+        chaos.Stop();
     }
 
 
