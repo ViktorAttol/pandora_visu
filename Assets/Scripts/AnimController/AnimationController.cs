@@ -7,6 +7,9 @@ namespace AnimController
 { 
     public class AnimationController: MonoBehaviour, IAnimationController
     {
+        // Sound Manager Stuff
+        public SoundManager sound;
+
         private enum AnimationState
         {
             Init, StartChaos, StartPheno, RunChaos, StopChaos, RunPheno, StopPheno
@@ -81,6 +84,9 @@ namespace AnimController
             animationState = AnimationState.RunChaos;
             currAnimationRuntime = 0f;
             currFadeoutRuntime = 0f;
+
+            // Sound Stuff
+            sound.Play("chaos");
         }
         
         /// <summary>
@@ -97,6 +103,9 @@ namespace AnimController
             animationState = AnimationState.RunPheno;
             currAnimationRuntime = 0f;
             currFadeoutRuntime = 0f;
+
+            // Sound Stuff
+            sound.Play("phenotypes");
         }
         private void OnCaseRunChaos()
         {

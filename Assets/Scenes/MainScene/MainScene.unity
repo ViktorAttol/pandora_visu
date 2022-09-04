@@ -459,25 +459,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: chaos_sequence
-    clip: {fileID: 8300000, guid: 5421f0a3f83eb4a21be7a9bdec258ffe, type: 3}
+  - name: chaos
+    clip: {fileID: 8300000, guid: 6c2323ba2abef48a6925c667a90a1982, type: 3}
     source: {fileID: 0}
-    volume: 1
+    volume: 0
     loop: 0
   - name: chaos_loop
-    clip: {fileID: 8300000, guid: fbcf8ceead1484366bf6ff24bed722da, type: 3}
+    clip: {fileID: 8300000, guid: 5e05e6a5b78a34e30b42d3bae72c7413, type: 3}
     source: {fileID: 0}
-    volume: 1
+    volume: 0
     loop: 1
-  - name: phenotyoes_sequence
-    clip: {fileID: 8300000, guid: fbcf8ceead1484366bf6ff24bed722da, type: 3}
+  - name: phenotypes
+    clip: {fileID: 8300000, guid: 92d02af7a22544483b850a37832b47d7, type: 3}
     source: {fileID: 0}
-    volume: 1
+    volume: 0
     loop: 0
-  - name: phenotyoes_loop
-    clip: {fileID: 8300000, guid: fbcf8ceead1484366bf6ff24bed722da, type: 3}
+  - name: phenotypes_loop
+    clip: {fileID: 8300000, guid: f5f46065038f4400691904adb1f31a79, type: 3}
     source: {fileID: 0}
-    volume: 1
+    volume: 0
     loop: 1
   fadeDuration: 10
   debug: 0
@@ -888,6 +888,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8036242955171356810, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
+        type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 1608605215}
     - target: {fileID: 8036242955815443900, guid: 8bcc948320fafa9479ac5f1b8a8d4017,
         type: 3}
       propertyPath: m_IsActive
