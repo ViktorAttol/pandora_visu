@@ -479,7 +479,7 @@ MonoBehaviour:
     source: {fileID: 0}
     volume: 0
     loop: 1
-  fadeDuration: 10
+  fadeDuration: 8
   debug: 0
 --- !u!1 &1823688464
 GameObject:
