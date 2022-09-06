@@ -80,7 +80,7 @@ public class DataManager: IDataManager, IReadReceiver, IPhenotypeReceiver
                 dataContainer.data = dataRow[1];
                 dataContainer.quality = dataRow[2];
                 //Debug.Log(signalData[i]);
-                dataContainer.signals = GetSignalForReadFromRow(signalData[i]);// be aware of dragons
+                dataContainer.signals = GetSignalForReadFromRow(signalData[i -1]);// be aware of dragons
                 dataContainer.id = i - 1;
                 reads.Add(dataContainer);
             }

@@ -15,9 +15,9 @@ MonoBehaviour:
   postScale: 1.8
   randomStartVelocity: 0.001
   attractionSpeedForce: 0.2
-  blobSize: 0.4
-  knobSize: 0.05
-  trisSize: 0.005
+  blobSize: 1
+  knobSize: 0.08
+  trisSize: 0.01
   trisRate: 60000
   blobsKnobsRate: 20000
   crossFadeDuration: 1

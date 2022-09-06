@@ -24,10 +24,10 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: -0.08667007
+    m_Value: 1.2
   compensation:
-    m_OverrideState: 0
-    m_Value: 27.5
+    m_OverrideState: 1
+    m_Value: -1.5
   limitMin:
     m_OverrideState: 0
     m_Value: -10
@@ -151,46 +151,6 @@ MonoBehaviour:
   proceduralSoftness:
     m_OverrideState: 0
     m_Value: 0.5
---- !u!114 &-6958855728281335876
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f086a068d4c5889438831b3ae9afc11c, type: 3}
-  m_Name: Tonemapping
-  m_EditorClassIdentifier: 
-  active: 1
-  mode:
-    m_OverrideState: 1
-    m_Value: 2
-  toeStrength:
-    m_OverrideState: 0
-    m_Value: 0
-  toeLength:
-    m_OverrideState: 0
-    m_Value: 0.5
-  shoulderStrength:
-    m_OverrideState: 0
-    m_Value: 0
-  shoulderLength:
-    m_OverrideState: 0
-    m_Value: 0.5
-  shoulderAngle:
-    m_OverrideState: 0
-    m_Value: 0
-  gamma:
-    m_OverrideState: 0
-    m_Value: 1
-  lutTexture:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-  lutContribution:
-    m_OverrideState: 0
-    m_Value: 1
 --- !u!114 &-6358234146770234167
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -365,7 +325,6 @@ MonoBehaviour:
   m_Name: Volumetric-PostProcess
   m_EditorClassIdentifier: 
   components:
-  - {fileID: -6958855728281335876}
   - {fileID: -8318837148586389046}
   - {fileID: -5384917994482376145}
   - {fileID: 11782479920561992}
@@ -394,7 +353,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.788
+    m_Value: 0.448
   scatter:
     m_OverrideState: 1
     m_Value: 0.015
@@ -431,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1be1b6c95cd2e41b27903b9270817f, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 0
     m_Value: 0
@@ -471,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf384b154398e341b6b29969c078198, type: 3}
   m_Name: MotionBlur
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   quality:
     m_OverrideState: 0
     m_Value: 3
