@@ -22,11 +22,11 @@ namespace AnimController
 
         private IAnimationConnector currentlyRunningAnimation = null;
 
-        private float maxRuntimeChaos = 1f; // set this to 380
-        private float maxRuntimePheno = 30f; // set this to 180
+        private float maxRuntimeChaos = 380f; // set this to 380
+        private float maxRuntimePheno = 180f; // set this to 180
         private float currAnimationRuntime = 0f;
         
-        private float maxRuntimeChaosFadingOut = 1f; // set this to 40
+        private float maxRuntimeChaosFadingOut = 40f; // set this to 40
         private float maxRuntimePhenoFadingOut = 8f; // set this to 8
         private float currFadeoutRuntime = 0f;
 

@@ -22,4 +22,4 @@ MonoBehaviour:
   blobsKnobsRate: 20000
   crossFadeDuration: 1
   fadeOutDuration: 8
-  displayDuration: 10
+  displayDuration: 60
