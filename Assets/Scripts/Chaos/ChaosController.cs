@@ -93,6 +93,7 @@ public class ChaosController : MonoBehaviour
                 break;
 
         }
+        print ("cage alpha: " + cageMaterial.GetFloat("_Alpha"));
     }
 
     private void OnCaseIdle()
@@ -116,7 +117,7 @@ public class ChaosController : MonoBehaviour
 
     private void OnCaseStart()
     {
-        if (cageMaterial.GetFloat("_Alpha") <= 0.5f)
+        if (cageMaterial.GetFloat("_Alpha") <= 0.5f) // Todo: Different Fade Method
             fadeCage(0.001f);
             else if (cageMaterial.GetFloat("_Alpha") > 0.5f &&  cageMaterial.GetFloat("_Alpha") <= 1.0f)
             {

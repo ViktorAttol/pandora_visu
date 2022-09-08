@@ -44,17 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d854935257d44d69a2813746b31ba598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabTest: {fileID: 5170840889067651766, guid: 9c35048fd625d45a8bd18fd816172d0c,
-    type: 3}
-  animationConnector: {fileID: 9048377937179906610, guid: b75a58c1a4db74641bfe5195c2339f88,
-    type: 3}
-  idleAnimationPrefab: {fileID: 7726183754060598487, guid: 0c35113d3e69b01428e7ebdfd1ff1438,
-    type: 3}
-  animations:
-  - {fileID: 4008601127795195762, guid: 71e0fb752346efe4a85378b083051083, type: 3}
-  - {fileID: 8912960132303434700, guid: 0728fa417ff5c684c93ceee985c82b78, type: 3}
-  - {fileID: 7183713107896163508, guid: 8328b32ef0509e04aa6154c5571d2c07, type: 3}
-  chaosAnimationPrefab: {fileID: 4597689863024187558, guid: 76254f2619050d346a10c4dff0d4a20d,
+  sound: {fileID: 0}
+  chaosAnimationPrefab: {fileID: 4597689863024187558, guid: a2522af435b424333833725eac9e11b0,
     type: 3}
   phenoAnimationPrefab: {fileID: 1873763218480383137, guid: 8839eaee99d299f4aa16ef47d21e5c4f,
     type: 3}

@@ -42,9 +42,6 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
                 PhenoDisplayData currPheno = preprocessedPhenotypes[0];
                 displayedPhenotypes.Add(currPheno);
                 preprocessedPhenotypes.Remove(currPheno);
-
-                // FADE OUT
-                if (preprocessedPhenotypes.Count < 1) StartCoroutine(FadeAlpha(vfxSet.fadeOutDuration, lastAlpha, 0));
             }
         }
         else
@@ -136,5 +133,11 @@ public class PhenotypeAnimationDisplayController : MonoBehaviour
 
         vfx.SetFloat("fadeFactor", end);
         print("fade finished.");
+    }
+
+    // Interface Methods
+    public void FadeOutPhenotypes()
+    {
+        StartCoroutine(FadeAlpha(vfxSet.fadeOutDuration, lastAlpha, 0));
     }
 }

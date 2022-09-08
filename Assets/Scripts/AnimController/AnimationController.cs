@@ -22,12 +22,12 @@ namespace AnimController
 
         private IAnimationConnector currentlyRunningAnimation = null;
 
-        private float maxRuntimeChaos = 380f; //380f; // 3min //
-        private float maxRuntimePheno = 94f; // 90s + 4s
+        private float maxRuntimeChaos = 1f; // set this to 380
+        private float maxRuntimePheno = 30f; // set this to 180
         private float currAnimationRuntime = 0f;
         
-        private float maxRuntimeChaosFadingOut = 40f; //40s
-        private float maxRuntimePhenoFadingOut = 0f; //4s
+        private float maxRuntimeChaosFadingOut = 1f; // set this to 40
+        private float maxRuntimePhenoFadingOut = 8f; // set this to 8
         private float currFadeoutRuntime = 0f;
 
         private AnimationState animationState = AnimationState.Init;
@@ -123,7 +123,7 @@ namespace AnimController
             if (currAnimationRuntime >= maxRuntimePheno)
             {
                 animationState = AnimationState.StopPheno;
-                //Todo currentlyRunningAnimation.FadeOutAnimation();
+                currentlyRunningAnimation.FadeOutAnimation();
                 return;
             }
             currAnimationRuntime += Time.deltaTime;

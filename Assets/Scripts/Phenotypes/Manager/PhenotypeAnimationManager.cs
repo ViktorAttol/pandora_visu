@@ -7,16 +7,9 @@ using System;
 public class PhenotypeAnimationManager : MonoBehaviour, IAnimationConnector
 {
     public PhenotypeAnimationDataPreprocessor dataPreprocessor;
+    public PhenotypeAnimationDisplayController displayController;
 
     private IDataManager dataManager;
-    // Start is called before the first frame update
-    /*
-     void Start()     
-    {
-        dataManager = new DataManager();
-        dataPreprocessor.SetDataManager(dataManager);
-    }
-    */
 
     // Update is called once per frame
     void Update()
@@ -32,11 +25,12 @@ public class PhenotypeAnimationManager : MonoBehaviour, IAnimationConnector
 
     public void StartAnimation()
     {
+
     }
 
     public void FadeOutAnimation()
     {
-        //throw new NotImplementedException();
+        displayController.FadeOutPhenotypes();
     }
 
     public void EndAnimation()

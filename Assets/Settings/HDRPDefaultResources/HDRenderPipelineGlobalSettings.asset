@@ -69,9 +69,9 @@ MonoBehaviour:
   afterPostProcessBlursCustomPostProcesses: []
   afterPostProcessCustomPostProcesses: []
   beforeTAACustomPostProcesses: []
-  lightLayerName0: Light Layer default
-  lightLayerName1: Light Layer 1
-  lightLayerName2: Light Layer 2
+  lightLayerName0: static scene (cage only)
+  lightLayerName1: chaos
+  lightLayerName2: phenotypes
   lightLayerName3: Light Layer 3
   lightLayerName4: Light Layer 4
   lightLayerName5: Light Layer 5
